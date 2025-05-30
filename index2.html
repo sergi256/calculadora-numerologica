@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <title>Calculadora de Numerologia</title>
+	<meta name="description" content="Eina per calcular els nombres del teu nom i data de naixement segons els principis de la numerologia aplicada per Martine Coquatrix.">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css"> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h1>Calculadora Numerològica</h1>
+
+	<div class="disclaimer-banner">
+        Aquesta pàgina automatitza el càlcul de les Àrees Clau i de la Inclusió tal com explica <b>Martine Coquatrix</b> en el seu llibre <a href="https://libreriaepsilon.com/catalogo/la-numerologia-a-la-luz-del-arbol-de-la-vida-y-las-letras-hebraicas" target="_blank" rel="noopener noreferrer">La numerología a la luz del árbol de vida y las letras hebraicas</a>. El significat de cada número està explicat detalladament en el llibre.
+    </div>
+
+	
+	<div class="input-group">
+		<div class="input-field-wrapper">
+			<label for="nomComplet">El Nom i els 4 Cognoms:</label>
+			<input type="text" id="nomInput" placeholder="Introdueix el teu nom complet">
+		</div>
+
+		<div class="input-field-wrapper">
+			<label for="diaNaixement">Data de Naixement:</label>
+			<div class="date-inputs-group">
+				<input type="number" id="dia" placeholder="Dia" min="1" max="31">
+				<input type="number" id="mes" placeholder="Mes" min="1" max="12">
+				<input type="number" id="any" placeholder="Any" min="1900" max="2100">
+			</div>
+		</div>
+    </div>
+    
+    <table id=taulaAreesClau>
+        <tr>
+            <th>Tipus de número</th>
+            <th>Valor</th>
+            <th>Significat bàsic</th>
+        </tr>
+        <tr>
+            <td>Número Camí de Vida</td>
+            <td id="camivida">-</td>
+            <td>Propòsit existencial</td>
+        </tr>
+        <tr>
+            <td>Número d'Ànima o impuls espiritual</td>
+            <td id="anima">-</td>
+            <td>Essència del nostre Ser profund</td>
+        </tr>
+        <tr>
+            <td>Número de la Personalitat</td>
+            <td id="personalitat">-</td>
+            <td>Aspectes a desenvolupar per ajudar l'ànima</td>
+        </tr>
+        <tr>
+            <td>Número de l'Expressió</td>
+            <td id="expressio">-</td>
+            <td>Revela el nostre comportament exterior en la vida</td>
+        </tr>
+        <tr>
+            <td>Número de la Missió Còsmica</td>
+            <td id="missiocosmica">-</td>
+            <td>Representa el propòsit de la nostra vida en el nostre procés evolutiu</td>
+        </tr>
+        <tr>
+            <td>Número de Força</td>
+            <td id="força">-</td>
+            <td>Representa els dons que tenim que podem usar com a comodíns o acceleradors de la vida</td>
+        </tr>
+        <tr>
+            <td>Número d'Equilibri</td>
+            <td id="equilibri">-</td>
+            <td>Representa les eines que hem de desenvolupar per adquirir l'equilibri a la nostra vida</td>
+        </tr>
+        <tr>
+            <td>Número d'Iniciació Espiritual</td>
+            <td id="iniespiritual">-</td>
+            <td>Ens proposa un camí espiritual que ens ajudarà a complir els nostres objectius en aquesta vida</td>
+        </tr>
+    </table>
+    
+    <table id="taulaDades">
+        <tr>
+            <td>Cases</td>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+            <td>5</td>
+            <td>6</td>
+            <td>7</td>
+            <td>8</td>
+            <td>9</td>
+        </tr>
+        <tr>
+            <td>Habitants</td>
+            <td class="habitants-cell">-</td>
+            <td class="habitants-cell">-</td>
+            <td class="habitants-cell">-</td>
+            <td class="habitants-cell">-</td>
+            <td class="habitants-cell">-</td>
+            <td class="habitants-cell">-</td>
+            <td class="habitants-cell">-</td>
+            <td class="habitants-cell">-</td>
+            <td class="habitants-cell">-</td>
+        </tr>
+		<tr>
+			<td>Inducció 1r nivell</td>
+			<td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td>
+		</tr>
+		<tr>
+			<td>Inducció 2r nivell</td>
+			<td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td>
+		</tr>
+		<tr>
+			<td>Inducció 3r nivell</td>
+			<td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td>
+		</tr>
+		<tr>
+			<td>Ponts</td>
+			<td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td>
+		</tr>
+		<tr>
+			<td>Proposta Evolució</td>
+			<td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td>
+		</tr>
+		<tr>
+			<td>Inconscient</td>
+			<td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td>
+		</tr>
+		<tr>
+			<td>Inducció 1r nivell Inconscient</td>
+			<td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td>
+		</tr>
+		<tr>
+			<td>Inducció 2n nivell Inconscient</td>
+			<td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td>
+		</tr>
+		<tr>
+			<td>Inducció 3r nivell Inconscient</td>
+			<td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td>
+		</tr>		
+    </table>
+
+    <button id="pdfButton">Descarregar com a PDF</button>
+    <div id="errorPDF" style="display: none;"></div>
+  </div>
+  
+    <script>
+        // Constants per als valors numerològics
+        const VALORS_LLETRES_NUMEROLOGIA = {
+            A: 1, B: 2, C: 3, D: 4, E: 5, F: 6, G: 7, H: 8, I: 9,
+            J: 1, K: 2, L: 3, M: 4, N: 5, O: 6, P: 7, Q: 8, R: 9,
+            S: 1, T: 2, U: 3, V: 4, W: 5, X: 6, Y: 7, Z: 8
+        };
+
+        const VALORS_VOCALS_ANIMA = { A: 1, E: 5, I: 9, O: 6, U: 3 };
+        const NUMEROS_MESTRES = [11, 22, 33];
+
+        // --- Lògica de Càlcul de Numerologia ---
+        class CalculadoraNumerologia {
+            constructor(nomComplet, dia, mes, any) {
+                this.nomComplet = nomComplet.toUpperCase().trim();
+                this.diaNaixement = parseInt(dia) || 0;
+                this.mesNaixement = parseInt(mes) || 0;
+                this.anyNaixement = parseInt(any) || 0;
+            }
+
+            // Funció genèrica per reduir un número a un sol dígit o número mestre
+            reduirNumero(num) {
+                while (num > 9 && !NUMEROS_MESTRES.includes(num)) {
+                    num = String(num).split('').reduce((sum, digit) => sum + parseInt(digit), 0);
+                }
+                return num;
+            }
+
+            // Funció per sumar valors de lletres d'una cadena
+            sumarValorsLletres(cadena, valorsMap) {
+                let suma = 0;
+                for (const lletra of cadena.toUpperCase()) {
+                    suma += valorsMap[lletra] || 0;
+                }
+                return suma;
+            }
+
+            // Calcula el Camí de Vida
+            calcularCamiVida() {
+                // IMPORTANT: Verifiquem si les dades són vàlides (no undefined/NaN/0)
+                if (!this.diaNaixement || !this.mesNaixement || !this.anyNaixement ||
+                    isNaN(this.diaNaixement) || isNaN(this.mesNaixement) || isNaN(this.anyNaixement)) {
+                    return "-";
+                }
+                const suma = this.diaNaixement + this.mesNaixement + this.anyNaixement;
+                const reduit = this.reduirNumero(suma);
+                return suma > 78 ? String(reduit) : `${suma}/${reduit}`;
+            }
+
+            // Calcula el Número d'Ànima (vocals)
+            calcularAnima() {
+                if (!this.nomComplet || this.nomComplet.length < 2) return "-"; // Si no hi ha nom, retornem '-'
+                const vocals = this.nomComplet.match(/[AEIOUÁÉÍÓÚÀÈÌÒÙÄËÏÖÜ]/gi) || [];
+                const total = this.sumarValorsLletres(vocals.join(''), VALORS_VOCALS_ANIMA);
+                // Si el total és 0 (per exemple, nom sense vocals o massa curt), també retornem '-'
+                if (total === 0 && this.nomComplet.length < 2) return "-"; 
+                const reduit = NUMEROS_MESTRES.includes(total) ? total : this.reduirNumero(total);
+                return total > 78 ? String(reduit) : `${total}/${reduit}`;
+            }
+
+            // Calcula el Número de la Personalitat (consonants)
+            calcularPersonalitat() {
+                if (!this.nomComplet || this.nomComplet.length < 2) return "-"; // Si no hi ha nom, retornem '-'
+                const consonants = this.nomComplet.match(/[BCDFGHJKLMNPQRSTVWXYZÇ]/gi) || [];
+                const total = this.sumarValorsLletres(consonants.join(''), VALORS_LLETRES_NUMEROLOGIA);
+                 // Si el total és 0 (per exemple, nom sense consonants o massa curt), també retornem '-'
+                if (total === 0 && this.nomComplet.length < 2) return "-";
+                const reduit = this.reduirNumero(total);
+                return total > 78 ? String(reduit) : `${total}/${reduit}`;
+            }
+            
+            // Funció auxiliar per obtenir el valor numèric sense reduir d'un resultat "X/Y"
+            _obtenirTotalSenseReduir(resultatCalcul) {
+                // Aquesta funció ha de gestionar el guió si el càlcul previ ha retornat '-'
+                if (resultatCalcul === "-") return 0; // O algun valor que no afecti sumes posteriors
+                const parts = String(resultatCalcul).split('/');
+                return parseInt(parts[0]);
+            }
+
+            // Calcula el Número de l'Expressió
+            calcularExpressio() {
+                if (!this.nomComplet || this.nomComplet.length < 2) return "-";
+                // Calculem els totals crus (sense reduir) de Anima i Personalitat
+                const totalAnima = this._obtenirTotalSenseReduir(this.calcularAnima());
+                const totalPersonalitat = this._obtenirTotalSenseReduir(this.calcularPersonalitat());
+                
+                // Si alguna de les parts és 0 (indicant que no hi havia nom o no es podia calcular),
+                // i el nom no és prou llarg, o si ambdós són 0, retornem '-'
+                if ((totalAnima === 0 && totalPersonalitat === 0) || this.nomComplet.length < 2) return "-";
+                
+                const sumaTotal = totalAnima + totalPersonalitat;
+                const reduit = this.reduirNumero(sumaTotal);
+                return sumaTotal > 78 ? String(reduit) : `${sumaTotal}/${reduit}`;
+            }
+
+            // Calcula la Missió Còsmica
+            calcularMissioCosmica() {
+                if (!this.diaNaixement || !this.mesNaixement || !this.anyNaixement || !this.nomComplet || this.nomComplet.length < 2) return "-";
+                
+                const totalCamiVida = this._obtenirTotalSenseReduir(this.calcularCamiVida());
+                const totalExpressio = this._obtenirTotalSenseReduir(this.calcularExpressio());
+
+                if (totalCamiVida === 0 || totalExpressio === 0) return "-"; // Si alguna part és invàlida, retornem '-'
+
+                const sumaTotal = totalCamiVida + totalExpressio;
+                const reduit = this.reduirNumero(sumaTotal);
+                return sumaTotal > 78 ? String(reduit) : `${sumaTotal}/${reduit}`;
+            }
+
+            // Calcula el Número de Força
+            calcularForca() {
+                if (!this.diaNaixement || !this.mesNaixement || isNaN(this.diaNaixement) || isNaN(this.mesNaixement)) return "-";
+                const suma = this.diaNaixement + this.mesNaixement;
+                const reduit = this.reduirNumero(suma);
+                return suma > 78 ? String(reduit) : `${suma}/${reduit}`;
+            }
+
+            // Calcula el Número d'Equilibri
+            calcularEquilibri() {
+                if (!this.nomComplet || this.nomComplet.length < 2) return "-";
+                const inicials = this.nomComplet.split(' ')
+                    .filter(paraula => paraula.length > 0)
+                    .map(paraula => paraula[0]);
+                // Si no hi ha inicials vàlides (ex: nom molt curt), retornem '-'
+                if (inicials.length === 0) return "-";
+                const suma = this.sumarValorsLletres(inicials.join(''), VALORS_LLETRES_NUMEROLOGIA);
+                const reduit = this.reduirNumero(suma);
+                return suma > 78 ? String(reduit) : `${suma}/${reduit}`;
+            }
+
+            // Calcula el Número d'Iniciació Espiritual
+            calcularIniciacioEspiritual() {
+                if (!this.diaNaixement || !this.mesNaixement || !this.anyNaixement || !this.nomComplet || this.nomComplet.length < 2) return "-";
+
+                const totalMissioCosmica = this._obtenirTotalSenseReduir(this.calcularMissioCosmica());
+                const totalAnima = this._obtenirTotalSenseReduir(this.calcularAnima());
+                const totalCamiVida = this._obtenirTotalSenseReduir(this.calcularCamiVida());
+
+                if (totalMissioCosmica === 0 || totalAnima === 0 || totalCamiVida === 0) return "-";
+
+                const sumaTotal = totalCamiVida + totalMissioCosmica + totalAnima;
+                const reduit = this.reduirNumero(sumaTotal);
+                return sumaTotal > 78 ? String(reduit) : `${sumaTotal}/${reduit}`;
+            }
+            // Calcula els Habitants (quantes lletres hi ha de cada valor 1-9)
+            calcularHabitants() {
+                if (!this.nomComplet || this.nomComplet.length < 2) {
+                    return new Array(9).fill(0); // Retorna un array de 9 zeros si el nom és invàlid
+				}
+                const comptadors = Array(9).fill(0); // [0,0,0,0,0,0,0,0,0]
+                [...this.nomComplet].forEach(lletra => {
+                    if (VALORS_LLETRES_NUMEROLOGIA.hasOwnProperty(lletra)) {
+                        const num = VALORS_LLETRES_NUMEROLOGIA[lletra];
+                        comptadors[num - 1]++;
+                    }
+                });
+                return comptadors;
+            }
+
+            // Calcula els 3 nivells d'Inducció
+            calcularInduccio(habitants) {
+                if (!Array.isArray(habitants) || habitants.every(h => h === 0)) {
+                    // Retorna un objecte amb arrays de zeros per a tots els nivells si no hi ha dades
+                    return {
+                        nivell1: new Array(9).fill(0),
+                        nivell2: new Array(9).fill(0),
+                        nivell3: new Array(9).fill(0)
+                    };
+                }
+
+                const nivell1 = []; // Aquests són els valors que ja calcules per al 1r nivell
+                // ... (la teva lògica actual per calcular el 1r nivell d'inducció) ...
+                // Exemple:
+                for (let i = 0; i < 9; i++) {
+                    // Exemple de càlcul: Podria ser habitants[i] o una suma/reducció complexa
+                    nivell1.push(habitants[i] > 0 ? this.reduirNumero(habitants[i]) : 0); 
+                }
+
+                const nivell2 = []; // Lògica per al 2n nivell
+                // Exemple: Podria dependre del 1r nivell, o d'altres dades
+                for (let i = 0; i < 9; i++) {
+                    // IMPLEMENTA AQUÍ LA TEVA LÒGICA PER AL CÀLCUL DE LA INDUCCIÓ 2N NIVELL
+                    nivell2.push(nivell1[i] > 0 ? this.reduirNumero(nivell1[i] + 1) : 0); // Exemple de lògica
+                }
+
+                const nivell3 = []; // Lògica per al 3r nivell
+                // Exemple: Podria dependre del 2n nivell, o d'altres dades
+                for (let i = 0; i < 9; i++) {
+                    // IMPLEMENTA AQUÍ LA TEVA LÒGICA PER AL CÀLCUL DE LA INDUCCIÓ 3R NIVELL
+                    nivell3.push(nivell2[i] > 0 ? this.reduirNumero(nivell2[i] + 2) : 0); // Exemple de lògica
+                }
+
+                return { nivell1, nivell2, nivell3 };
+            }
+			
+            // Calcula els Ponts
+            calcularPonts(habitants) {
+                if (!Array.isArray(habitants) || habitants.every(h => h === 0)) {
+                    return new Array(9).fill(0);
+                }
+                const ponts = [];
+                for (let casa = 0; casa < 9; casa++) {
+                    const valorCasa = casa + 1; // La casa és el número 1-9
+                    const valorHabitants = habitants[casa];
+                    ponts.push(Math.abs(valorCasa - valorHabitants));
+                }
+                return ponts;
+            }
+
+            // Calcula la Proposta d'Evolució
+            calcularPropostaEvolucio(habitants) {
+                if (!Array.isArray(habitants) || habitants.every(h => h === 0)) {
+                    return new Array(9).fill(0);
+                }
+                const propostaEvolucio = [];
+                for (let i = 0; i < 9; i++) {
+                    const valorActual = habitants[i];
+                    let comptador = 0;
+                    for (let j = 0; j < 9; j++) {
+                        if (i !== j && habitants[j] === valorActual) {
+                            comptador++;
+                        }
+                    }
+                    propostaEvolucio.push(valorActual + comptador);
+                }
+                return propostaEvolucio;
+            }
+
+            // Calcula l'Inconscient
+            calcularInconscient(habitants) {
+                if (!Array.isArray(habitants) || habitants.every(h => h === 0)) {
+                    return new Array(9).fill(0);
+                }
+                // La lògica és idèntica a calcularPropostaEvolucio amb la definició actual.
+                // Es manté com a funció separada per si les regles divergeixen en el futur.
+                return this.calcularPropostaEvolucio(habitants);
+            }
+
+            // Calcula la Inducció de l'Inconscient
+            calcularInduccioInconscient(inconscient) {
+                if (!Array.isArray(inconscient) || inconscient.every(i => i === 0)) {
+                    // Retorna un objecte amb arrays de zeros per a tots els nivells si no hi ha dades
+                    return {
+                        nivell1: new Array(9).fill(0),
+                        nivell2: new Array(9).fill(0),
+                        nivell3: new Array(9).fill(0)
+                    };
+                }
+
+                const nivell1 = []; // La teva lògica actual per al 1r nivell d'inducció inconscient
+                // ... (la teva lògica actual per calcular el 1r nivell d'inducció inconscient) ...
+                // Exemple:
+                for (let i = 0; i < 9; i++) {
+                    nivell1.push(inconscient[i] > 0 ? this.reduirNumero(inconscient[i]) : 0);
+                }
+
+                const nivell2 = []; // Lògica per al 2n nivell inconscient
+                // IMPLEMENTA AQUÍ LA TEVA LÒGICA PER AL CÀLCUL DE LA INDUCCIÓ 2N NIVELL INCONSCIENT
+                for (let i = 0; i < 9; i++) {
+                    nivell2.push(nivell1[i] > 0 ? this.reduirNumero(nivell1[i] + 3) : 0); // Exemple de lògica
+                }
+
+                const nivell3 = []; // Lògica per al 3r nivell inconscient
+                // IMPLEMENTA AQUÍ LA TEVA LÒGICA PER AL CÀLCUL DE LA INDUCCIÓ 3R NIVELL INCONSCIENT
+                for (let i = 0; i < 9; i++) {
+                    nivell3.push(nivell2[i] > 0 ? this.reduirNumero(nivell2[i] + 4) : 0); // Exemple de lògica
+                }
+
+                return { nivell1, nivell2, nivell3 };
+            }
+		}
+
+        // --- Lògica d'Interfície d'Usuari i Gestió del DOM ---
+        const ui = {
+            elements: {
+                nomInput: document.getElementById("nomInput"),
+                diaInput: document.getElementById("dia"),
+                mesInput: document.getElementById("mes"),
+                anyInput: document.getElementById("any"),
+                pdfButton: document.getElementById("pdfButton"),
+                errorPDF: document.getElementById("errorPDF"),
+                taulaPrincipal: document.querySelector("table:first-of-type"), // La primera taula amb els càlculs bàsics
+                taulaDades: document.getElementById("taulaDades"),
+            },
+
+            // Inicialitza els listeners d'esdeveniments
+            init() {
+                // Validació bàsica d'existència d'elements
+                for (const key in this.elements) {
+                    if (!this.elements[key]) {
+                        console.error(`Error: Element amb ID/selector '${key}' no trobat.`);
+                        // Podem optar per llançar un error o simplement sortir
+                        return; 
+                    }
+                }
+
+                // Attach events
+                this.elements.nomInput.addEventListener('input', this.handleInputChange.bind(this));
+                this.elements.diaInput.addEventListener('input', this.handleInputChange.bind(this));
+                this.elements.mesInput.addEventListener('input', this.handleInputChange.bind(this));
+                this.elements.anyInput.addEventListener('input', this.handleInputChange.bind(this));
+                this.elements.pdfButton.addEventListener('click', this.generarPDF.bind(this));
+            },
+
+            // Gestor de canvis als inputs
+            handleInputChange() {
+				// CORRECCIÓ AQUÍ: Accedir a errorPDF a través de this.elements
+                this.elements.errorPDF.style.display = 'none'; // Abans era this.errorPDF
+                this.actualitzarCalculs();            },
+
+            // Reseteja els resultats a la interfície
+            netejarResultats() {
+                // Netejar els camps individuals de resultats
+                document.querySelectorAll("td[id]").forEach(td => {
+                    td.innerHTML = "-"; // Sempre un guió per defecte
+                    td.classList.remove("numero-mestre");
+                });
+
+                // Netejar la fila d'Habitants
+                document.querySelectorAll('.habitants-cell').forEach(cell => cell.textContent = '-');
+
+                // Netejar les 9 files de dades (Inducció, Ponts, etc.)
+                const taulaDades = this.elements.taulaDades;
+                // Comencem des de la fila 3 (índex 2), fins al final de la taula.
+                // Això garanteix que les dues primeres files (Cases i Habitants) es mantenen.
+                for (let r = 2; r < taulaDades.rows.length; r++) { 
+                    for (let c = 1; c < taulaDades.rows[r].cells.length; c++) { // Comencem des de la 2a columna (índex 1)
+                        taulaDades.rows[r].cells[c].textContent = '-';
+                    }
+                }
+            },
+            // Actualitza tots els càlculs i els mostra a la UI
+            actualitzarCalculs() {
+                this.netejarResultats(); // Neteja totes les cel·les amb '-' o buit al principi
+
+                const nom = this.elements.nomInput.value.trim();
+                const dia = this.elements.diaInput.value;
+                const mes = this.elements.mesInput.value;
+                const any = this.elements.anyInput.value;
+
+                const calculadora = new CalculadoraNumerologia(nom, dia, mes, any);
+
+                // --- Càlcul i actualització dels resultats de l'arbre (Anima, Personalitat, Expressio, CamiVida, etc.) ---
+                const resultatsCalculats = {
+                    anima: calculadora.calcularAnima(),
+                    personalitat: calculadora.calcularPersonalitat(),
+                    expressio: calculadora.calcularExpressio(),
+                    camivida: calculadora.calcularCamiVida(),
+                    missiocosmica: calculadora.calcularMissioCosmica(),
+                    força: calculadora.calcularForca(),
+                    equilibri: calculadora.calcularEquilibri(),
+                    iniespiritual: calculadora.calcularIniciacioEspiritual(),
+                };
+
+                for (const tipus in resultatsCalculats) {
+                    const element = document.getElementById(tipus);
+                    if (element) {
+                        const valorCompleix = resultatsCalculats[tipus];
+                        if (valorCompleix === '-') {
+                            element.innerHTML = "-";
+                            element.classList.remove("numero-mestre");
+                            continue;
+                        }
+
+                        const valorParts = String(valorCompleix).split('/');
+                        const valorReduit = parseInt(valorParts.pop());
+
+                        if (NUMEROS_MESTRES.includes(valorReduit)) {
+                            element.innerHTML = `${valorReduit}/${this.reduirNumeroSimple(valorReduit)}`;
+                            element.classList.add("numero-mestre");
+                        } else {
+                            element.innerHTML = valorCompleix;
+                            element.classList.remove("numero-mestre");
+                        }
+                    }
+                }
+                
+                // --- Càlcul i actualització de les taules dependents de l'estructura (Habitants, Inducció, Ponts, etc.) ---
+                // Aquí és on calculem les variables una sola vegada i en l'ordre correcte.
+                
+				// Calculem Habitants primer
+				const habitants = calculadora.calcularHabitants(); 
+				
+				// Actualitzar Habitants a la taula HTML
+				const habitantsCells = document.querySelectorAll('.habitants-cell'); 
+				habitants.forEach((count, index) => {
+					if (habitantsCells[index]) {
+						habitantsCells[index].textContent = count > 0 ? count : '-';
+					}
+				});
+
+				// Calculem Inconscient (depèn d'habitants)
+				const inconscient = calculadora.calcularInconscient(habitants); 
+
+				// Calculem les induccions (ara retornen objectes amb 3 nivells)
+				const induccionsCalculades = calculadora.calcularInduccio(habitants); 
+				const induccionsInconscientsCalculades = calculadora.calcularInduccioInconscient(inconscient);
+
+				// Calculem la resta de variables per a actualitzarTaulaDades
+				const ponts = calculadora.calcularPonts(habitants);
+				const propostaEvolucio = calculadora.calcularPropostaEvolucio(habitants);
+
+				// Finalment, actualitzem la taula amb totes les dades
+				this.actualitzarTaulaDades(
+					habitants,
+					induccionsCalculades, // Passem l'objecte complet
+					ponts,
+					propostaEvolucio,
+					inconscient,
+					induccionsInconscientsCalculades // Passem l'objecte complet
+				);
+            },
+			
+            // Afegeix aquesta nova funció auxiliar a l'objecte `ui`
+            reduirNumeroSimple(num) {
+                // Aquesta funció fa la reducció simple per als mestres (11->2, 22->4, 33->6)
+                while (num > 9) {
+                    num = String(num).split('').reduce((sum, digit) => sum + parseInt(digit), 0);
+                }
+                return num;
+            },
+			
+            // Funció per afegir/actualitzar les files a taulaDades
+			actualitzarTaulaDades(
+				habitants, 
+				induccionsCalculades, 
+				ponts, 
+				propostaEvolucio, 
+				inconscient, 
+				induccionsInconscientsCalculades
+				// Si tens més paràmetres com relacioAnimaInconscient, etc. afegeix-los aquí
+			) {
+				const taulaDades = this.elements.taulaDades;
+
+				// Funció auxiliar per obtenir el valor a mostrar a la taulaDades
+				// Sempre redueix el número si no és un guió.
+				const obtenirValorTaulaDades = (valor) => {
+					if (valor === '-' || valor === 0 || valor === undefined || isNaN(valor)) {
+						return '-';
+					}
+					// Si és un número, el reduïm a un sol dígit
+					return this.reduirNumeroSimple(valor);
+				};
+
+
+				// Fila 3 (índex 2): Inducció 1r nivell
+				for (let i = 0; i < 9; i++) {
+					const valor = induccionsCalculades.nivell1[i];
+					taulaDades.rows[2].cells[i + 1].textContent = obtenirValorTaulaDades(valor);
+				}
+
+				// Fila 4 (índex 3): Inducció 2n nivell
+				for (let i = 0; i < 9; i++) {
+					const valor = induccionsCalculades.nivell2[i];
+					taulaDades.rows[3].cells[i + 1].textContent = obtenirValorTaulaDades(valor);
+				}
+
+				// Fila 5 (índex 4): Inducció 3r nivell
+				for (let i = 0; i < 9; i++) {
+					const valor = induccionsCalculades.nivell3[i];
+					taulaDades.rows[4].cells[i + 1].textContent = obtenirValorTaulaDades(valor);
+				}
+
+				// Fila 6 (índex 5): Ponts
+				for (let i = 0; i < 9; i++) {
+					const valor = ponts[i]; // Ponts ja deuen ser reduïts si s'han de reduir a la Calculadora
+					taulaDades.rows[5].cells[i + 1].textContent = obtenirValorTaulaDades(valor);
+				}
+
+				// Fila 7 (índex 6): Proposta Evolució
+				for (let i = 0; i < 9; i++) {
+					const valor = propostaEvolucio[i];
+					taulaDades.rows[6].cells[i + 1].textContent = obtenirValorTaulaDades(valor);
+				}
+
+				// Fila 8 (índex 7): Inconscient
+				for (let i = 0; i < 9; i++) {
+					const valor = inconscient[i]; // Aquest valor potser ja ha de ser reduït de la Calculadora
+					taulaDades.rows[7].cells[i + 1].textContent = obtenirValorTaulaDades(valor);
+				}
+
+				// Fila 9 (índex 8): Inducció 1r nivell Inconscient
+				for (let i = 0; i < 9; i++) {
+					const valor = induccionsInconscientsCalculades.nivell1[i];
+					taulaDades.rows[8].cells[i + 1].textContent = obtenirValorTaulaDades(valor);
+				}
+
+				// Fila 10 (índex 9): Inducció 2n nivell Inconscient
+				for (let i = 0; i < 9; i++) {
+					const valor = induccionsInconscientsCalculades.nivell2[i];
+					taulaDades.rows[9].cells[i + 1].textContent = obtenirValorTaulaDades(valor);
+				}
+
+				// Fila 11 (índex 10): Inducció 3r nivell Inconscient
+				for (let i = 0; i < 9; i++) {
+					const valor = induccionsInconscientsCalculades.nivell3[i];
+					taulaDades.rows[10].cells[i + 1].textContent = obtenirValorTaulaDades(valor);
+				}
+
+				// Si tens les altres 4 files (Relació Anima-Inconscient, etc.) a l'HTML,
+				// descomenta i omple aquestes línies, aplicant també la funció obtenirValorTaulaDades.
+				/*
+				const calculadora = new CalculadoraNumerologia(
+					this.elements.nomInput.value.trim(),
+					this.elements.diaInput.value,
+					this.elements.mesInput.value,
+					this.elements.anyInput.value
+				);
+
+				// Aquests càlculs ja estan dissenyats per retornar X/Y o directament el reduït.
+				// Si vols que només es mostri el reduït final, aplica obtenirValorTaulaDades.
+				const relacioAnimaInconscient = calculadora.calcularRelacio(calculadora.calcularAnima(), calculadora.calcularInconscient([]));
+				const relacioInconscientExpressio = calculadora.calcularRelacio(calculadora.calcularInconscient([]), calculadora.calcularExpressio());
+				const relacioAnimaExpressio = calculadora.calcularRelacio(calculadora.calcularAnima(), calculadora.calcularExpressio());
+				const objectiuVida = calculadora.calcularObjectiuVida();
+				
+				// Per aquests, si la funció de calcular ja retorna un número simple,
+				// no caldria `obtenirValorTaulaDades` a menys que siguin X/Y.
+				// Si la teva calculadora ja els retorna reduïts o '-', n'hi ha prou amb:
+				taulaDades.rows[11].cells[1].textContent = relacioAnimaInconscient;
+				taulaDades.rows[12].cells[1].textContent = relacioInconscientExpressio;
+				taulaDades.rows[13].cells[1].textContent = relacioAnimaExpressio;
+				taulaDades.rows[14].cells[1].textContent = objectiuVida;
+
+				// Si tornen X/Y i vols només el final reduït:
+				// taulaDades.rows[11].cells[1].textContent = obtenirValorTaulaDades(relacioAnimaInconscient);
+				// etc.
+				*/
+			},
+            // Funció per generar el PDF
+            generarPDF() {
+                try {
+                    // CORRECCIÓ AQUÍ TAMBÉ (per consistència i robustesa):
+                    this.elements.errorPDF.style.display = 'none'; // Abans era this.elements.errorPDF
+
+                    const nom = this.elements.nomInput.value.trim();
+                    const camivida = document.getElementById("camivida").innerText;
+                    const anima = document.getElementById("anima").innerText;
+
+                    if (camivida === "-" || anima === "-") {
+                        throw new Error("Si us plau, omple el nom i la data de naixement abans de generar el PDF.");
+                    }
+
+                    const { jsPDF } = window.jspdf;
+                    const doc = new jsPDF();
+                    
+                    doc.text(`Informe de Numerologia - ${nom || "Anònim"}`, 15, 15);
+                    
+                    // Preparar dades de la primera taula
+                    const rowsMainTable = [
+                        ["Tipus", "Valor", "Significat"],
+                        ["Camí de Vida", camivida, "Propòsit existencial"],
+                        ["Número d'Ànima o impuls espiritual", anima, "Essència del nostre Ser profund"],
+                        ["Número de la Personalitat", document.getElementById("personalitat").innerText, "Aspectes a desenvolupar per ajudar l'ànima"],
+                        ["Número de l'Expressió", document.getElementById("expressio").innerText, "Revela el nostre comportament exterior en la vida"],
+                        ["Número de la Missió Còsmica", document.getElementById("missiocosmica").innerText, "Representa el propòsit de la nostra vida en el nostre procés evolutiu"],
+                        ["Número de Força", document.getElementById("força").innerText, "Representa els dons que tenim que podem usar com a comodíns o acceleradors de la vida"],
+                        ["Número d'Equilibri", document.getElementById("equilibri").innerText, "Representa les eines que hem de desenvolupar per adquirir l'equilibri a la nostra vida"],
+                        ["Número d'Iniciació Espiritual", document.getElementById("iniespiritual").innerText, "Ens proposa un camí espiritual que ens ajudarà a complir els nostres objectius en aquesta vida"],
+                    ];
+
+                    doc.autoTable({
+                        startY: 25,
+                        head: [rowsMainTable[0]],
+                        body: rowsMainTable.slice(1),
+                        styles: { fontSize: 10 }
+                    });
+
+                    // Preparar dades de la segona taula (taulaDades)
+                    const taulaDadesHTML = this.elements.taulaDades;
+                    const dadesTaulaSecundaria = Array.from(taulaDadesHTML.rows).map(row => 
+                        Array.from(row.cells).map(cell => cell.textContent.trim() || "0")
+                    );
+
+                    doc.autoTable({
+                        startY: doc.lastAutoTable.finalY + 15, // Posiciona sota la primera taula
+                        head: [dadesTaulaSecundaria[0]], // Cases
+                        body: dadesTaulaSecundaria.slice(1), // Habitants + files addicionals
+                        styles: {
+                            fontSize: 9,
+                            halign: "center",
+                            cellPadding: 2,
+                            valign: "middle"
+                        },
+                        columnStyles: {
+                            0: { fontStyle: "bold", cellWidth: 22 } // Columna d'etiquetes
+                        },
+                        headStyles: {
+                            fillColor: [106, 27, 154], // Morat
+                            textColor: 255
+                        },
+                        didDrawCell: (data) => {
+                            const colors = {
+                                5: [6, 69, 173],    // Proposta Evolució (blau)
+                                6: [34, 139, 34],    // Inconscient (verd)
+                                7: [139, 0, 139],    // Ind. 1r nivell (violeta)
+                                8: [139, 0, 139],    // Ind. 2n nivell 
+                                9: [139, 0, 139]     // Ind. 3r nivell
+                            };
+                            
+                            // Ajustar l'índex de la fila per als colors, ja que l'índex de `data.row.index` és respecte a la `body` de la taula.
+                            // La fila "Proposta Evolució" al HTML és la 7a, però a `dadesTaulaSecundaria.slice(1)` seria la 5a (índex 4).
+                            // A `autoTable` l'índex comença des de 0 per a la primera fila del `body`.
+                            // Les nostres files especials comencen a l'índex 4 (Proposta Evolució) de les dades (dadesTaulaSecundaria.slice(1)).
+                            // Ajustem l'índex de data.row.index sumant un offset.
+                            // Fila "Habitants" és index 0 a `body`
+                            // Fila "1r nivell (inducció original)" és index 1 a `body`
+                            // ...
+                            // Fila "Proposta Evolució" és index 4 a `body` (era index 5 al teu codi original, però ara és +2 per la nova estructura de `actualitzarTaulaDades`)
+                            // Fila "Inconscient" és index 5 a `body`
+                            // Fila "Ind. 1r nivell" és index 6 a `body`
+                            // Així que si vols aplicar els colors a les mateixes files que abans, hauries de reajustar els índexs de `colors`.
+                            // Per simplicitat, usarem els índexs directes de la `body` de la taula generada.
+                            // Si 'Proposta Evolució' és la 5a fila del BODY (índex 4), etc.
+
+                            // Reajust dels índexs de `colors` per correspondre a les files del `body` passat a `autoTable`
+                            // Habitants: Index 0
+                            // Inducció 1r nivell: Index 1
+                            // Inducció 2n nivell: Index 2
+                            // Inducció 3r nivell: Index 3
+                            // Ponts: Index 4
+                            // Proposta Evolució: Index 5
+                            // Inconscient: Index 6
+                            // Ind. 1r nivell (inconscient): Index 7
+                            // Ind. 2n nivell (inconscient): Index 8
+                            // Ind. 3r nivell (inconscient): Index 9
+                            const adjustedColors = {
+                                5: [6, 69, 173],    // Proposta Evolució (blau)
+                                6: [34, 139, 34],    // Inconscient (verd)
+                                7: [139, 0, 139],    // Ind. 1r nivell (inconscient)
+                                8: [139, 0, 139],    // Ind. 2n nivell (inconscient)
+                                9: [139, 0, 139]     // Ind. 3r nivell (inconscient)
+                            };
+
+                            if (adjustedColors[data.row.index]) {
+                                const color = adjustedColors[data.row.index];
+                                doc.setTextColor(color[0], color[1], color[2]);
+                                data.cell.styles.fontStyle = "bold";
+                            }
+                        },
+                        willDrawCell: (data) => {
+                            if (data.row.index % 2 === 0 && data.row.index > 0) {
+                                doc.setFillColor(245, 245, 245);
+                                doc.rect(data.cell.x, data.cell.y, data.cell.width, data.cell.height, "F");
+                            }
+                        }
+                    });
+
+                    doc.setFontSize(8);
+                    doc.setTextColor(100);
+                    doc.text("* Les files d'Inducció es calculen a partir de l'Inconscient", 15, doc.lastAutoTable.finalY + 10);
+                    
+                    doc.save(`Numerologia_Avancada_${(nom || "Anonim").substring(0, 10)}.pdf`);
+                } catch (error) {
+                    console.error("Error al generar PDF:", error);
+                    this.elements.errorPDF.textContent = error.message;
+                    this.elements.errorPDF.style.display = 'block';
+                }
+            }
+        };
+
+        // Quan el DOM estigui carregat, inicialitzar la UI
+        document.addEventListener('DOMContentLoaded', () => {
+            ui.init();
+        });
+    </script>
+</body>
+</html>
