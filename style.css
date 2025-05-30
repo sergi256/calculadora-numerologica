@@ -168,7 +168,7 @@ button:hover {
 
 #taulaAreesClau td {
     padding: 15px;
-    text-align: left;
+    text-align: right;
     color: #f0f8ff; /* Text clar */
     font-size: 1.1em;
     border: none; /* Eliminem els bordes individuals de les cel·les */
@@ -182,7 +182,7 @@ button:hover {
     border-bottom-left-radius: 8px;
 }
 #taulaAreesClau tr td:last-child {
-    text-align: right; /* Alinea els números a la dreta */
+    text-align: left; /* Alinea els números a la dreta */
     width: 65%; /* Ajusta l'amplada de la columna dels números */
     border-top-right-radius: 8px;
     border-bottom-right-radius: 8px;
@@ -229,10 +229,13 @@ button:hover {
 
 /* Estil per la primera columna de la taulaDades (noms de les categories) */
 #taulaDades tr td:first-child {
-    text-align: left;
+    background-color: rgba(17, 34, 51, 0.7); 
     font-weight: bold;
-    color: #c9e0e8; /* Color per la primera columna */
-    background-color: rgba(17, 34, 51, 0.5); /* Fons més fosc per la primera columna */
+    color: #a7d9e4; /* Un blau gelós per als títols de les files */
+    text-align: right; /* ALINEAR A LA DRETA */
+    padding-right: 25px; /* Una mica més d'espai a la dreta per separar del contingut */
+    /* Aquí pots afegir un border-right per a la columna si vols una separació visual */
+    /* border-right: 1px solid rgba(167, 217, 228, 0.2); */ 
 }
 
 /* --- Estils per a les Símbols (Opcional, amb CSS per a text o amb imatges) --- */
