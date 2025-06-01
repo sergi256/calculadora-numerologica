@@ -7,7 +7,7 @@ body {
     background-color: #e0f2f4; /* Un blau molt clar, gairebé blanc, que simula la neu i el cel fred */
     color: #333; /* Un gris fosc per al text principal */
     line-height: 1.6;
-	background-image: url('scattered coins with enigmatic letter carved on.jpeg');    background-size: cover; /* Ajusta la imatge per cobrir tot el fons */
+	background-image: url('images/scattered coins with enigmatic letters carved on them.jpeg');    background-size: cover; /* Ajusta la imatge per cobrir tot el fons */
     background-position: center center;
     background-attachment: fixed; /* La imatge de fons es queda fixa en fer scroll */
     position: relative; /* Per superposar una capa semitransparent */
