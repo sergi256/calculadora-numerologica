@@ -275,6 +275,37 @@ Exemple de font rúnica (requereix que l'usuari la tingui instal·lada o que la 
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
 }
 
+/* --- Peu de Pàgina --- */
+.site-footer {
+    background-color: rgba(17, 34, 51, 0.9); /* Fons fosc, similar al teu contenidor principal */
+    color: #e0f2f4; /* Text clar */
+    text-align: center; /* Centra el text */
+    padding: 20px 15px; /* Espaiat intern superior/inferior i lateral */
+    margin-top: 40px; /* Margen superior per separar-lo del contingut */
+    font-size: 0.9em; /* Mida de text lleugerament més petita */
+    border-top: 1px solid rgba(167, 217, 228, 0.2); /* Una línia subtil a la part superior */
+}
+
+.site-footer p {
+    margin: 0; /* Elimina el marge per defecte dels paràgrafs dins del footer */
+    line-height: 1.6; /* Millora la llegibilitat en múltiples línies */
+}
+
+.site-footer a {
+    color: #a7d9e4; /* Un blau gelós clar, similar al color de les labels */
+    text-decoration: none; /* Elimina el subratllat per defecte */
+    font-weight: bold; /* Fa el text de l'enllaç més destacat */
+    transition: color 0.3s ease; /* Transició suau per a l'efecte hover */
+}
+
+/* Efecte en passar el ratolí per sobre (hover) */
+.site-footer a:hover {
+    color: #c9e0e8; /* Una mica més clar en passar el ratolí per sobre */
+    text-decoration: underline; /* Torna a afegir el subratllat en hover per indicar que és un enllaç */
+}
+
+
+
 /* --- Media Queries per a Responsive (Opcional) --- */
 @media (max-width: 768px) {
     body {
