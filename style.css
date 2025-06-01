@@ -57,7 +57,6 @@ h1 {
     margin-bottom: 25px;
     font-size: 0.95em;
     text-align: justify;
-    border-left: 5px solid #a7d9e4; /* Un toc de color gelós al costat */
 }
 .disclaimer-banner a {
     color: #f0f8ff; /* Blanc pur per l'enllaç del disclaimer */
