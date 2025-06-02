@@ -303,7 +303,40 @@ Exemple de font rúnica (requereix que l'usuari la tingui instal·lada o que la 
     text-decoration: underline; /* Torna a afegir el subratllat en hover per indicar que és un enllaç */
 }
 
+/* --- Canviador d'idioma --- */
+.language-switcher {
+    text-align: center;
+    margin-bottom: 20px;
+    padding-top: 20px; /* Per separar-lo de la part superior de la finestra */
+    display: flex;
+    justify-content: center;
+    gap: 10px; /* Espai entre els botons */
+}
 
+.lang-button {
+    display: inline-block;
+    padding: 8px 15px;
+    background-color: rgba(167, 217, 228, 0.2); /* Fons subtil */
+    color: #a7d9e4; /* Color de text */
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 0.9em;
+    font-weight: bold;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    border: 1px solid rgba(167, 217, 228, 0.4);
+}
+
+.lang-button:hover {
+    background-color: rgba(167, 217, 228, 0.4); /* Més intens en passar el ratolí */
+    color: #e0f2f4;
+}
+
+.lang-button.active {
+    background-color: #a7d9e4; /* Fons sòlid per a l'idioma actiu */
+    color: #112233; /* Text fosc per a l'idioma actiu */
+    cursor: default; /* No permet fer clic si ja és l'idioma actiu */
+    border-color: #a7d9e4;
+}
 
 /* --- Media Queries per a Responsive (Opcional) --- */
 @media (max-width: 768px) {

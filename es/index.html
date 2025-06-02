@@ -5,11 +5,16 @@
 	<meta name="description" content="Herramienta para calcular los números de tu nombre y data de nacimiento según los principios de la numerología aplicada por Martine Coquatrix.">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css"> 
+    <link rel="stylesheet" href="../style.css"> 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
 </head>
 <body>
+    <div class="language-switcher">
+        <a href="../index.html" class="lang-button">Català</a>
+        <a href="./index.html" class="lang-button active">Castellano</a>
+    </div>
+
   <div class="container">
     <h1>Calculadora Numerológica</h1>
 
@@ -29,7 +34,7 @@
 			<div class="date-inputs-group">
 				<input type="number" id="dia" placeholder="Dia" min="1" max="31">
 				<input type="number" id="mes" placeholder="Mes" min="1" max="12">
-				<input type="number" id="any" placeholder="Any" min="1900" max="2100">
+				<input type="number" id="any" placeholder="Año" min="1900" max="2100">
 			</div>
 		</div>
     </div>
