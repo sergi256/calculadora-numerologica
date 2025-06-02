@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="ca">
+<html lang="es">
 <head>
-    <title>Calculadora de Numerologia</title>
-	<meta name="description" content="Eina per calcular els nombres del teu nom i data de naixement segons els principis de la numerologia aplicada per Martine Coquatrix.">
+    <title>Calculadora Numerológica</title>
+	<meta name="description" content="Herramienta para calcular los números de tu nombre y data de nacimiento según los principios de la numerología aplicada por Martine Coquatrix.">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css"> 
@@ -11,21 +11,21 @@
 </head>
 <body>
   <div class="container">
-    <h1>Calculadora Numerològica</h1>
+    <h1>Calculadora Numerológica</h1>
 
 	<div class="disclaimer-banner">
-        Aquesta pàgina automatitza el càlcul de les Àrees Clau i de la Inclusió tal com explica <b>Martine Coquatrix</b> en el seu llibre <a href="https://libreriaepsilon.com/catalogo/la-numerologia-a-la-luz-del-arbol-de-la-vida-y-las-letras-hebraicas" target="_blank" rel="noopener noreferrer">La numerología a la luz del árbol de vida y las letras hebraicas</a>. El significat de cada número està explicat detalladament en el llibre.
+		Esta página automatiza el càlculo de las Areas Clave i de la Inclusión tal como explica <b>Martine Coquatrix</b> en su libro <a href="https://libreriaepsilon.com/catalogo/la-numerologia-a-la-luz-del-arbol-de-la-vida-y-las-letras-hebraicas" target="_blank" rel="noopener noreferrer">La numerología a la luz del árbol de vida y las letras hebraicas</a>. El significado de cada número está explicado detalladamente en el libro.
     </div>
 
 	
 	<div class="input-group">
 		<div class="input-field-wrapper">
-			<label for="nomComplet">El teu Nom i els teus quatre Cognoms:</label>
-			<input type="text" id="nomInput" placeholder="Introdueix el teu nom complet">
+			<label for="nomComplet">Tu Nombre y tus cuatro Apellidos:</label>
+			<input type="text" id="nomInput" placeholder="Introduce teu nombre completo">
 		</div>
 
 		<div class="input-field-wrapper">
-			<label for="diaNaixement">Data de Naixement:</label>
+			<label for="diaNaixement">Fecha de nacimiento:</label>
 			<div class="date-inputs-group">
 				<input type="number" id="dia" placeholder="Dia" min="1" max="31">
 				<input type="number" id="mes" placeholder="Mes" min="1" max="12">
@@ -36,49 +36,49 @@
     
     <table id=taulaAreesClau>
         <tr>
-            <th>Tipus de número</th>
+            <th>Tipo de número</th>
             <th>Valor</th>
-            <th>Significat Bàsic</th>
+            <th>Significado Básico</th>
         </tr>
         <tr>
-            <td>Número Camí de Vida</td>
+            <td>Número Camino de Vida</td>
             <td id="camivida">-</td>
-            <td>Propòsit existencial</td>
+            <td>Propósito existencial</td>
         </tr>
         <tr>
-            <td>Número d'Ànima o impuls espiritual</td>
+            <td>Número de Alma o Impulso Espiritual</td>
             <td id="anima">-</td>
-            <td>Essència del nostre Ser profund</td>
+            <td>Esencia de nuestro Ser profundo</td>
         </tr>
         <tr>
-            <td>Número de la Personalitat</td>
+            <td>Número de la Personalidad</td>
             <td id="personalitat">-</td>
-            <td>Aspectes a desenvolupar per ajudar l'ànima</td>
+            <td>Aspectos a desarrollar para ayudar al alma</td>
         </tr>
         <tr>
-            <td>Número de l'Expressió</td>
+            <td>Número de la Expresión</td>
             <td id="expressio">-</td>
-            <td>Revela el nostre comportament exterior en la vida</td>
+            <td>Revela nuestro comportamiento exterior en la vida</td>
         </tr>
         <tr>
-            <td>Número de la Missió Còsmica</td>
+            <td>Número de la Misión Cósmica</td>
             <td id="missiocosmica">-</td>
-            <td>Representa el propòsit de la nostra vida en el nostre procés evolutiu</td>
+            <td>Representa el propósito de nuestra vida en nuestro proceso evolutivo</td>
         </tr>
         <tr>
-            <td>Número de Força</td>
+            <td>Número de Fuerza</td>
             <td id="força">-</td>
-            <td>Representa els dons que tenim i podem usar com a comodíns o acceleradors de la vida</td>
+            <td>Representa los dones que tenemos y podemos usar como comodines o aceleradores de la vida</td>
         </tr>
         <tr>
-            <td>Número d'Equilibri</td>
+            <td>Número de Equilibrio</td>
             <td id="equilibri">-</td>
-            <td>Representa les eines que hem de desenvolupar per adquirir l'equilibri a la nostra vida</td>
+            <td>Representa las herramientas que debemos desarrollar para adquirir el equilibrio en nuestra vida</td>
         </tr>
         <tr>
-            <td>Número d'Iniciació Espiritual</td>
+            <td>Número de Iniciación Espiritual</td>
             <td id="iniespiritual">-</td>
-            <td>Ens proposa un camí espiritual que ens ajudarà a complir els nostres objectius en aquesta vida</td>
+            <td>Nos propone un camino espiritual que nos ayudará a cumplir nuestros objectivos en esta vida</td>
         </tr>
     </table>
     
@@ -145,13 +145,13 @@
 		</tr>		
     </table>
 
-    <button id="pdfButton">Descarregar com a PDF</button>
+    <button id="pdfButton">Descargar como PDF</button>
     <div id="errorPDF" style="display: none;"></div>
   </div>
 	
     <footer class="site-footer">
-        <p>© 2025 Sergi Ximenes Catà de la Torra. Codi disponible sota <a href="LICENSE" target="_blank" rel="noopener noreferrer""LICENSE">GNU AFFERO GENERAL PUBLIC LICENSE Version 3</a></p>	
-        <p>Totes les imatges d'aquesta pàgina són de domini públic (sense restriccions de copyright).</p>
+        <p>© 2025 Sergi Ximenes Catà de la Torra. Codigo disponible bajo <a href="LICENSE" target="_blank" rel="noopener noreferrer""LICENSE">GNU AFFERO GENERAL PUBLIC LICENSE Version 3</a></p>	
+        <p>Todas las imagenes de esta página son de dominio público (sin restricciones de copyright).</p>
     </footer>
 	
   
@@ -445,7 +445,7 @@
                 // Validació bàsica d'existència d'elements
                 for (const key in this.elements) {
                     if (!this.elements[key]) {
-                        console.error(`Error: Element amb ID/selector '${key}' no trobat.`);
+                        console.error(`Error: Elemento con ID/selector '${key}' no encontrado.`);
                         // Podem optar per llançar un error o simplement sortir
                         return; 
                     }
@@ -695,25 +695,25 @@
                     const anima = document.getElementById("anima").innerText;
 
                     if (camivida === "-" || anima === "-") {
-                        throw new Error("Si us plau, omple el nom i la data de naixement abans de generar el PDF.");
+                        throw new Error("Por favor, llena el nombre y la fecha de nacimiento antes de generar el PDF.");
                     }
 
                     const { jsPDF } = window.jspdf;
                     const doc = new jsPDF();
                     
-                    doc.text(`Informe Numerològic - ${nom || "Anònim"}`, 15, 15);
+                    doc.text(`Informe Numerológico - ${nom || "Anónimo"}`, 15, 15);
                     
                     // Preparar dades de la primera taula
                     const rowsMainTable = [
                         ["Tipus", "Valor", "Significat"],
-                        ["Número Camí de Vida", camivida, "Propòsit existencial"],
-                        ["Número d'Ànima o impuls espiritual", anima, "Essència del nostre Ser profund"],
-                        ["Número de la Personalitat", document.getElementById("personalitat").innerText, "Aspectes a desenvolupar per ajudar l'ànima"],
-                        ["Número de l'Expressió", document.getElementById("expressio").innerText, "Revela el nostre comportament exterior en la vida"],
-                        ["Número de la Missió Còsmica", document.getElementById("missiocosmica").innerText, "Representa el propòsit de la nostra vida en el nostre procés evolutiu"],
-                        ["Número de Força", document.getElementById("força").innerText, "Representa els dons que tenim que podem usar com a comodíns o acceleradors de la vida"],
-                        ["Número d'Equilibri", document.getElementById("equilibri").innerText, "Representa les eines que hem de desenvolupar per adquirir l'equilibri a la nostra vida"],
-                        ["Número d'Iniciació Espiritual", document.getElementById("iniespiritual").innerText, "Ens proposa un camí espiritual que ens ajudarà a complir els nostres objectius en aquesta vida"],
+                        ["Número Camino de Vida", camivida, "Propósito existencial"],
+                        ["Número de Alma o Impulso Espiritual", anima, "Esencia de nuestro Ser profundo"],
+                        ["Número de la Personalidad", document.getElementById("personalitat").innerText, "Aspectos a desarrollar para ayudar al alma"],
+                        ["Número de la Expresión", document.getElementById("expressio").innerText, "Revela nuestro comportamiento exterior en la vida"],
+                        ["Número de la Misión Cósmica", document.getElementById("missiocosmica").innerText, "Representa el propósito de nuestra vida en nuestro proceso evolutivo"],
+                        ["Número de Fuerza", document.getElementById("força").innerText, "Representa los dones que tenemos y podemos usar como comodines o aceleradores de la vida"],
+                        ["Número de Equilibrio", document.getElementById("equilibri").innerText, "Representa las herramientas que debemos desarrollar para adquirir el equilibrio en nuestra vida"],
+                        ["Número de Iniciación Espiritual", document.getElementById("iniespiritual").innerText, "Nos propone un camino espiritual que nos ayudará a cumplir nuestros objectivos en esta vida"],
                     ];
 
                     doc.autoTable({
@@ -805,9 +805,9 @@
 
                     doc.setFontSize(8);
                     doc.setTextColor(100);
-                    doc.text("* Les files d'Inducció es calculen a partir de l'Inconscient", 15, doc.lastAutoTable.finalY + 10);
+                    doc.text("* Las filas de la Inducción se calculan a partir del Inconsciente", 15, doc.lastAutoTable.finalY + 10);
                     
-                    doc.save(`Informe Numerològic - ${(nom || "Anonim").substring(0, 10)}.pdf`);
+                    doc.save(`Informe Numerológico - ${(nom || "Anonim").substring(0, 10)}.pdf`);
                 } catch (error) {
                     console.error("Error al generar PDF:", error);
                     this.elements.errorPDF.textContent = error.message;
