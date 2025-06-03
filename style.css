@@ -38,6 +38,37 @@ body::before {
     color: #e0f2f4; /* Text clar sobre fons fosc transparent */
 }
 
+/* --- Estils per al NOU Disclaimer de Proves (només afecten a #nou-disclaimer-proves) --- */
+#nou-disclaimer-proves {
+    background-color: #ffeb3b; /* Groc suau per a avisos */
+    color: #333; /* Text fosc */
+    text-align: center;
+    padding: 10px 0;
+    font-size: 1.1em;
+    font-weight: bold;
+    border-bottom: 2px solid #fbc02d; /* Línia inferior */
+    width: 100%;
+    box-sizing: border-box; /* Inclou padding i border en l'amplada total */
+    z-index: 1000; /* Assegura que estigui per sobre d'altres elements */
+    position: relative; /* O 'fixed' si vols que es quedi a dalt en fer scroll */
+    transition: all 0.3s ease-in-out; /* Transició per a una aparició/desaparició suau */
+    opacity: 1; /* Per defecte visible */
+    visibility: visible;
+    height: auto; /* Per defecte amb alçada */
+}
+
+/* --- Classe per amagar el NOU Disclaimer (només afecta a #nou-disclaimer-proves quan està ocult) --- */
+#nou-disclaimer-proves.is-hidden {
+    opacity: 0;
+    visibility: hidden;
+    height: 0; /* Col·lapsa l'alçada per no ocupar espai quan està ocult */
+    padding: 0; /* Elimina el padding quan està ocult */
+    border-bottom: none; /* Elimina el border quan està ocult */
+    overflow: hidden; /* Evita que el contingut ocult pugui ser visible */
+}
+
+/* NOTA: Els teus estils existents per a '.disclaimer-banner' seguiran actius
+   i només afectaran els elements que tinguin *només* aquesta classe i no l'ID. */
 /* --- Títols --- */
 h1 {
     text-align: center;

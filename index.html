@@ -10,6 +10,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
 </head>
 <body>
+    <div id="nou-disclaimer-proves">
+		<p>Pàgina en període de proves</p>
+    </div>
+
     <div class="language-switcher">
         <a href="./index.html" class="lang-button active">Català</a>
         <a href="./es/index.html" class="lang-button">Castellano</a>
@@ -161,6 +165,24 @@
 	
   
     <script>
+		
+		// Posa 'true' per mostrar el bàner de proves, 'false' per amagar-lo.
+		const MOSTRAR_NOU_DISCLAIMER_PROVES = true; // <-- NOU NOM I CONTROL NOMÉS PER AQUEST
+
+		// --- Lògica per gestionar el bàner ---
+		document.addEventListener('DOMContentLoaded', () => {
+			// Seleccionem el nou bàner específicament per la seva ID
+			const nouDisclaimerBanner = document.getElementById('nou-disclaimer-proves');
+
+			if (nouDisclaimerBanner) { // Assegura't que l'element existeix
+				if (MOSTRAR_NOU_DISCLAIMER_PROVES) {
+					nouDisclaimerBanner.classList.remove('is-hidden'); // Si true, treu la classe per mostrar-lo
+				} else {
+					nouDisclaimerBanner.classList.add('is-hidden');    // Si false, afegeix la classe per amagar-lo
+				}
+			}
+		};
+	
         // Constants per als valors numerològics
         const VALORS_LLETRES_NUMEROLOGIA = {
             A: 1, B: 2, C: 3, D: 4, E: 5, F: 6, G: 7, H: 8, I: 9,
@@ -303,8 +325,9 @@
                 return suma > 78 ? String(reduit) : `${suma}/${reduit}`;
             }
 
-            // Calcula el Número d'Iniciació Espiritual
+            // Calcula el Número d'Iniciació Espiritual. p211
 			// (càlcul: la suma de 3 números, la Missió Cósmica, el dia de Naixement i el número d'Ànima)
+			// (es mantenen els números mestres)
             calcularIniciacioEspiritual() {
                 if (!this.diaNaixement || !this.mesNaixement || !this.anyNaixement || !this.nomComplet || this.nomComplet.length < 2) return "-";
 
