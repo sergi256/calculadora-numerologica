@@ -304,17 +304,16 @@
             }
 
             // Calcula el Número d'Iniciació Espiritual
-			// (càlcul: la suma del número de la Missió Cósmica
+			// (càlcul: la suma de 3 números, la Missió Cósmica, el dia de Naixement i el número d'Ànima)
             calcularIniciacioEspiritual() {
                 if (!this.diaNaixement || !this.mesNaixement || !this.anyNaixement || !this.nomComplet || this.nomComplet.length < 2) return "-";
 
                 const totalMissioCosmica = this._obtenirTotalSenseReduir(this.calcularMissioCosmica());
                 const totalAnima = this._obtenirTotalSenseReduir(this.calcularAnima());
-                const totalCamiVida = this._obtenirTotalSenseReduir(this.calcularCamiVida());
 
-                if (totalMissioCosmica === 0 || totalAnima === 0 || totalCamiVida === 0) return "-";
+                if (totalMissioCosmica === 0 || totalAnima === 0) return "-";
 
-                const sumaTotal = totalCamiVida + totalMissioCosmica + totalAnima;
+                const sumaTotal = this.diaNaixement + totalMissioCosmica + totalAnima;
                 const reduit = this.reduirNumero(sumaTotal);
                 return sumaTotal > 78 ? String(reduit) : `${sumaTotal}/${reduit}`;
             }
