@@ -492,65 +492,60 @@
                 }
             },
             // Actualitza tots els càlculs i els mostra a la UI
-            actualitzarCalculs() {
-                this.netejarResultats(); // Neteja totes les cel·les amb '-' o buit al principi
+			// ... (Totes les teves funcions, incloent reduirNumeroSimple, calcularHabitants, actualitzarTaulaDades) ...
 
-                const nom = this.elements.nomInput.value.trim();
-                const dia = this.elements.diaInput.value;
-                const mes = this.elements.mesInput.value;
-                const any = this.elements.anyInput.value;
+			actualitzarCalculs() {
+				this.netejarResultats(); // Neteja totes les cel·les amb '-' o buit al principi
 
-                const calculadora = new CalculadoraNumerologia(nom, dia, mes, any);
+				const nom = this.elements.nomInput.value.trim();
+				const dia = this.elements.diaInput.value;
+				const mes = this.elements.mesInput.value;
+				const any = this.elements.anyInput.value;
 
-                // --- Càlcul i actualització dels resultats de l'arbre (Anima, Personalitat, Expressio, CamiVida, etc.) ---
-                const resultatsCalculats = {
-                    anima: calculadora.calcularAnima(),
-                    personalitat: calculadora.calcularPersonalitat(),
-                    expressio: calculadora.calcularExpressio(),
-                    camivida: calculadora.calcularCamiVida(),
-                    missiocosmica: calculadora.calcularMissioCosmica(),
-                    força: calculadora.calcularForca(),
-                    equilibri: calculadora.calcularEquilibri(),
-                    iniespiritual: calculadora.calcularIniciacioEspiritual(),
-                };
+				const calculadora = new CalculadoraNumerologia(nom, dia, mes, any);
 
-                for (const tipus in resultatsCalculats) {
-                    const element = document.getElementById(tipus);
-                    if (element) {
-                        const valorCompleix = resultatsCalculats[tipus];
-                        if (valorCompleix === '-') {
-                            element.innerHTML = "-";
-                            element.classList.remove("numero-mestre");
-                            continue;
-                        }
+				// --- Càlcul i actualització dels resultats de l'arbre (Anima, Personalitat, Expressio, CamiVida, etc.) ---
+				const resultatsCalculats = {
+					anima: calculadora.calcularAnima(),
+					personalitat: calculadora.calcularPersonalitat(),
+					expressio: calculadora.calcularExpressio(),
+					camivida: calculadora.calcularCamiVida(),
+					missiocosmica: calculadora.calcularMissioCosmica(),
+					forca: calculadora.calcularForca(),
+					equilibri: calculadora.calcularEquilibri(),
+					iniespiritual: calculadora.calcularIniciacioEspiritual(),
+				};
 
-                        const valorParts = String(valorCompleix).split('/');
-                        const valorReduit = parseInt(valorParts.pop());
+				for (const tipus in resultatsCalculats) {
+					const element = document.getElementById(tipus);
+					if (element) {
+						const valorCompleix = resultatsCalculats[tipus];
+						if (valorCompleix === '-') {
+							element.innerHTML = "-";
+							element.classList.remove("numero-mestre");
+							continue;
+						}
 
-                        if (NUMEROS_MESTRES.includes(valorReduit)) {
-                            element.innerHTML = `${valorReduit}/${this.reduirNumeroSimple(valorReduit)}`;
-                            element.classList.add("numero-mestre");
-                        } else {
-                            element.innerHTML = valorCompleix;
-                            element.classList.remove("numero-mestre");
-                        }
-                    }
-                }
-                
-                // --- Càlcul i actualització de les taules dependents de l'estructura (Habitants, Inducció, Ponts, etc.) ---
-                // Aquí és on calculem les variables una sola vegada i en l'ordre correcte.
-                
-				// Calculem Habitants primer
-				const habitants = calculadora.calcularHabitants(); 
-				
-				// Actualitzar Habitants a la taula HTML
-				const habitantsCells = document.querySelectorAll('.habitants-cell'); 
-				habitants.forEach((count, index) => {
-					if (habitantsCells[index]) {
-						habitantsCells[index].textContent = count > 0 ? count : '-';
+						const valorParts = String(valorCompleix).split('/');
+						const valorReduit = parseInt(valorParts.pop());
+
+						if (NUMEROS_MESTRES.includes(valorReduit)) {
+							// Aquí ja hi ha una reducció simple si és mestre, assegura't que és la desitjada
+							element.innerHTML = `${valorReduit}/${this.reduirNumeroSimple(valorReduit)}`;
+							element.classList.add("numero-mestre");
+						} else {
+							element.innerHTML = valorCompleix; // Aquest valor ja hauria de ser reduït o el final desitjat
+							element.classList.remove("numero-mestre");
+						}
 					}
-				});
-
+				}
+				
+				// --- Càlcul i actualització de les taules dependents de l'estructura (Habitants, Inducció, Ponts, etc.) ---
+				// Aquí és on calculem les variables una sola vegada i en l'ordre correcte.
+				
+				// Calculem Habitants primer
+				const habitants = calculadora.calcularHabitants(); // Aquest 'habitants' és l'array de comptadors [0,1,2,...]
+				
 				// Calculem Inconscient (depèn d'habitants)
 				const inconscient = calculadora.calcularInconscient(habitants); 
 
@@ -563,6 +558,8 @@
 				const propostaEvolucio = calculadora.calcularPropostaEvolucio(habitants);
 
 				// Finalment, actualitzem la taula amb totes les dades
+				// Aquesta crida enviarà l'array 'habitants' a 'actualitzarTaulaDades',
+				// que ja té la lògica per recórrer-lo i reduir cada element.
 				this.actualitzarTaulaDades(
 					habitants,
 					induccionsCalculades, // Passem l'objecte complet
@@ -571,11 +568,15 @@
 					inconscient,
 					induccionsInconscientsCalculades // Passem l'objecte complet
 				);
-            },
-			
-            // Afegeix aquesta nova funció auxiliar a l'objecte `ui`
+			},  
+
+			// Afegeix aquesta nova funció auxiliar a l'objecte `ui`
             reduirNumeroSimple(num) {
                 // Aquesta funció fa la reducció simple per als mestres (11->2, 22->4, 33->6)
+				num = parseInt(num); // <-- Afegeix això per assegurar que és un enter
+				if (isNaN(num)) {
+					return '-'; // Retorna guió si no és un número vàlid
+				}
                 while (num > 9) {
                     num = String(num).split('').reduce((sum, digit) => sum + parseInt(digit), 0);
                 }
@@ -584,7 +585,7 @@
 			
             // Funció per afegir/actualitzar les files a taulaDades
 			actualitzarTaulaDades(
-				habitants, 
+				habitants, // ATENCIÓ: Aquest 'habitants' és l'ARRAY de comptadors (e.g., [0, 1, 2, ...])
 				induccionsCalculades, 
 				ponts, 
 				propostaEvolucio, 
@@ -604,6 +605,25 @@
 					return this.reduirNumeroSimple(valor);
 				};
 
+				// Fila 2 (índex 1): habitants
+				// 1. Selecciona totes les cel·les amb la classe 'habitants-cell'
+				const habitantsCells = document.querySelectorAll('.habitants-cell'); 
+				
+				// 2. Recorre l'array de comptadors d'Habitants
+				// i assigna el valor reduït a la cel·la corresponent.
+				// L'índex 'i' correspondrà a la posició (0-8) de l'array 'habitants'
+				// i també a la cel·la (0-8) dins del NodeList 'habitantsCells'.
+				for (let i = 0; i < habitants.length; i++) {
+					const valorOriginal = habitants[i]; // Aquest és el comptador (e.g., 10, 12)
+					const valorReduit = obtenirValorTaulaDades(valorOriginal); // Aquí el reduïm
+					
+					// Assegura't que hi ha una cel·la corresponent en la llista seleccionada
+					if (habitantsCells[i]) {
+						habitantsCells[i].textContent = valorReduit;
+					} else {
+						console.warn(`No s'ha trobat una cel·la 'habitants-cell' per a l'índex ${i}. La taula HTML pot no tenir 9 cel·les per Habitants.`);
+					}
+				}
 
 				// Fila 3 (índex 2): Inducció 1r nivell
 				for (let i = 0; i < 9; i++) {
@@ -689,6 +709,7 @@
 				// etc.
 				*/
 			},
+			
             // Funció per generar el PDF
             generarPDF() {
                 try {

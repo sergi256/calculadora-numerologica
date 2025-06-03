@@ -304,8 +304,8 @@
                 const reduit = this.reduirNumero(sumaTotal);
                 return sumaTotal > 78 ? String(reduit) : `${sumaTotal}/${reduit}`;
             }
-			
-			
+
+
             // Calcula els Habitants (quantes lletres hi ha de cada valor 1-9)
             calcularHabitants() {
                 if (!this.nomComplet || this.nomComplet.length < 2) {
@@ -495,17 +495,15 @@
             },
             // Actualitza tots els càlculs i els mostra a la UI
 			// ... (Totes les teves funcions, incloent reduirNumeroSimple, calcularHabitants, actualitzarTaulaDades) ...
-
 			actualitzarCalculs() {
 				this.netejarResultats(); // Neteja totes les cel·les amb '-' o buit al principi
-
 				const nom = this.elements.nomInput.value.trim();
 				const dia = this.elements.diaInput.value;
 				const mes = this.elements.mesInput.value;
 				const any = this.elements.anyInput.value;
 
 				const calculadora = new CalculadoraNumerologia(nom, dia, mes, any);
-
+				
 				// --- Càlcul i actualització dels resultats de l'arbre (Anima, Personalitat, Expressio, CamiVida, etc.) ---
 				const resultatsCalculats = {
 					anima: calculadora.calcularAnima(),
@@ -548,17 +546,6 @@
 				// Calculem Habitants primer
 				const habitants = calculadora.calcularHabitants(); // Aquest 'habitants' és l'array de comptadors [0,1,2,...]
 				
-				// --- ATENCIÓ: ELIMINA O COMENTA AQUEST BLOC! ---
-				/*
-				const habitantsCells = document.querySelectorAll('.habitants-cell'); 
-				habitants.forEach((count, index) => {
-					if (habitantsCells[index]) {
-						habitantsCells[index].textContent = count > 0 ? count : '-';
-					}
-				});
-				*/
-				// --- FI DEL BLOC A ELIMINAR/COMENTAR ---
-
 
 				// Calculem Inconscient (depèn d'habitants)
 				const inconscient = calculadora.calcularInconscient(habitants); 
@@ -722,11 +709,6 @@
 				// etc.
 				*/
 			},
-			
-			
-			
-			
-			
 			
             // Funció per generar el PDF
             generarPDF() {
