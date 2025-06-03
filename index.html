@@ -198,6 +198,7 @@
             }
 
             // Calcula el Camí de Vida
+			// (càlcul: la suma del dia, el mes i l'any)
             calcularCamiVida() {
                 // IMPORTANT: Verifiquem si les dades són vàlides (no undefined/NaN/0)
                 if (!this.diaNaixement || !this.mesNaixement || !this.anyNaixement ||
@@ -209,7 +210,8 @@
                 return suma > 78 ? String(reduit) : `${suma}/${reduit}`;
             }
 
-            // Calcula el Número d'Ànima (vocals)
+            // Calcula el Número d'Ànima 
+			// (càlcul: la suma del valor de totes les vocals)
             calcularAnima() {
                 if (!this.nomComplet || this.nomComplet.length < 2) return "-"; // Si no hi ha nom, retornem '-'
                 const vocals = this.nomComplet.match(/[AEIOUÁÉÍÓÚÀÈÌÒÙÄËÏÖÜ]/gi) || [];
@@ -220,7 +222,8 @@
                 return total > 78 ? String(reduit) : `${total}/${reduit}`;
             }
 
-            // Calcula el Número de la Personalitat (consonants)
+            // Calcula el Número de la Personalitat
+			// (càlcul: la suma del valor de totes les consonants)
             calcularPersonalitat() {
                 if (!this.nomComplet || this.nomComplet.length < 2) return "-"; // Si no hi ha nom, retornem '-'
                 const consonants = this.nomComplet.match(/[BCDFGHJKLMNPQRSTVWXYZÇ]/gi) || [];
@@ -240,6 +243,7 @@
             }
 
             // Calcula el Número de l'Expressió
+			// (càlcul: la suma del número de l'Ànima i el de la Personalitat)
             calcularExpressio() {
                 if (!this.nomComplet || this.nomComplet.length < 2) return "-";
                 // Calculem els totals crus (sense reduir) de Anima i Personalitat
@@ -256,6 +260,7 @@
             }
 
             // Calcula la Missió Còsmica
+			// (càlcul: la suma del número del Camí de Vida i el d'Expressió)
             calcularMissioCosmica() {
                 if (!this.diaNaixement || !this.mesNaixement || !this.anyNaixement || !this.nomComplet || this.nomComplet.length < 2) return "-";
                 
@@ -270,6 +275,7 @@
             }
 
             // Calcula el Número de Força
+			// (càlcul: es suma el dia i el mes de naixement)
             calcularForca() {
                 if (!this.diaNaixement || !this.mesNaixement || isNaN(this.diaNaixement) || isNaN(this.mesNaixement)) return "-";
                 const suma = this.diaNaixement + this.mesNaixement;
@@ -278,6 +284,7 @@
             }
 
             // Calcula el Número d'Equilibri
+			// (càlcul: es sumen els valors de les inicials del nom i els cognoms)
             calcularEquilibri() {
                 if (!this.nomComplet || this.nomComplet.length < 2) return "-";
                 const inicials = this.nomComplet.split(' ')
@@ -291,6 +298,7 @@
             }
 
             // Calcula el Número d'Iniciació Espiritual
+			// (càlcul: la suma del número de la Missió Cósmica
             calcularIniciacioEspiritual() {
                 if (!this.diaNaixement || !this.mesNaixement || !this.anyNaixement || !this.nomComplet || this.nomComplet.length < 2) return "-";
 
@@ -305,7 +313,9 @@
                 return sumaTotal > 78 ? String(reduit) : `${sumaTotal}/${reduit}`;
             }
 
-
+			
+			/* Funcions que calculen les files de la TaulaDades */
+			
             // Calcula els Habitants (quantes lletres hi ha de cada valor 1-9)
             calcularHabitants() {
                 if (!this.nomComplet || this.nomComplet.length < 2) {
@@ -357,7 +367,9 @@
                 return { nivell1, nivell2, nivell3 };
             }
 			
-            // Calcula els Ponts
+            // Calcula els Ponts iniciàtics p.232
+			// (càlcul: la diferència entre la casa i l'habitant de la casa)
+			// (en cas de número kàrmic el pont correspon a la casa on es troba) 
             calcularPonts(habitants) {
                 if (!Array.isArray(habitants) || habitants.every(h => h === 0)) {
                     return new Array(9).fill(0);
