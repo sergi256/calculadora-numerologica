@@ -172,14 +172,19 @@
         const NUMEROS_MESTRES = [11, 22, 33];
 
         // --- Lògica de Càlcul de Numerologia ---
-        class CalculadoraNumerologia {
-            constructor(nomComplet, dia, mes, any) {
-                this.nomComplet = nomComplet.toUpperCase().trim();
-                this.diaNaixement = parseInt(dia) || 0;
-                this.mesNaixement = parseInt(mes) || 0;
-                this.anyNaixement = parseInt(any) || 0;
-            }
+		class CalculadoraNumerologia {
+			constructor(nomComplet, dia, mes, any) {
+				// --- APLICA LA NORMALITZACIÓ PELS ACCENTS AQUÍ, ABANS DE .toUpperCase() ---
+				this.nomComplet = nomComplet
+					.normalize("NFD") // 1. Descompon els caràcters accentuats (p. ex., 'á' en 'a' + '´')
+					.replace(/[\u0300-\u036f]/g, "") // 2. Elimina els accents i altres diacrítics
+					.toUpperCase() // 3. Converteix a majúscules (ja ho feies)
+					.trim(); // 4. Elimina espais en blanc (ja ho feies)
 
+				this.diaNaixement = parseInt(dia) || 0;
+				this.mesNaixement = parseInt(mes) || 0;
+				this.anyNaixement = parseInt(any) || 0;
+			}
             // Funció genèrica per reduir un número a un sol dígit o número mestre
             reduirNumero(num) {
                 while (num > 9 && !NUMEROS_MESTRES.includes(num)) {
@@ -384,6 +389,7 @@
             }
 
             // Calcula la Proposta d'Evolució
+			// (càlcul: sumar el valor de l'habitant base d'un aspecte amb la quantitat d'habitants amb el mateix valor en *altres* aspectes)
             calcularPropostaEvolucio(habitants) {
                 if (!Array.isArray(habitants) || habitants.every(h => h === 0)) {
                     return new Array(9).fill(0);
