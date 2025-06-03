@@ -185,6 +185,7 @@
 				this.mesNaixement = parseInt(mes) || 0;
 				this.anyNaixement = parseInt(any) || 0;
 			}
+			
             // Funció genèrica per reduir un número a un sol dígit o número mestre
             reduirNumero(num) {
                 while (num > 9 && !NUMEROS_MESTRES.includes(num)) {
@@ -318,7 +319,6 @@
                 return sumaTotal > 78 ? String(reduit) : `${sumaTotal}/${reduit}`;
             }
 
-			
 			/* Funcions que calculen les files de la TaulaDades */
 			
             // Calcula els Habitants (quantes lletres hi ha de cada valor 1-9)
@@ -513,15 +513,17 @@
             },
             // Actualitza tots els càlculs i els mostra a la UI
 			// ... (Totes les teves funcions, incloent reduirNumeroSimple, calcularHabitants, actualitzarTaulaDades) ...
+
 			actualitzarCalculs() {
 				this.netejarResultats(); // Neteja totes les cel·les amb '-' o buit al principi
+
 				const nom = this.elements.nomInput.value.trim();
 				const dia = this.elements.diaInput.value;
 				const mes = this.elements.mesInput.value;
 				const any = this.elements.anyInput.value;
 
 				const calculadora = new CalculadoraNumerologia(nom, dia, mes, any);
-				
+
 				// --- Càlcul i actualització dels resultats de l'arbre (Anima, Personalitat, Expressio, CamiVida, etc.) ---
 				const resultatsCalculats = {
 					anima: calculadora.calcularAnima(),
@@ -564,7 +566,6 @@
 				// Calculem Habitants primer
 				const habitants = calculadora.calcularHabitants(); // Aquest 'habitants' és l'array de comptadors [0,1,2,...]
 				
-
 				// Calculem Inconscient (depèn d'habitants)
 				const inconscient = calculadora.calcularInconscient(habitants); 
 
@@ -587,7 +588,8 @@
 					inconscient,
 					induccionsInconscientsCalculades // Passem l'objecte complet
 				);
-			},			
+			},
+
             // Afegeix aquesta nova funció auxiliar a l'objecte `ui`
             reduirNumeroSimple(num) {
                 // Aquesta funció fa la reducció simple per als mestres (11->2, 22->4, 33->6)

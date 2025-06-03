@@ -72,7 +72,7 @@
         </tr>
         <tr>
             <td>Número de Fuerza</td>
-            <td id="força">-</td>
+            <td id="forca">-</td>
             <td>Representa los dones que tenemos y podemos usar como comodines o aceleradores de la vida</td>
         </tr>
         <tr>
@@ -155,7 +155,7 @@
   </div>
 	
     <footer class="site-footer">
-        <p>© 2025 Sergi Ximenes Catà de la Torra. Codigo disponible bajo <a href="LICENSE" target="_blank" rel="noopener noreferrer""LICENSE">GNU AFFERO GENERAL PUBLIC LICENSE Version 3</a></p>	
+        <p>© 2025 Sergi Ximenes Catà de la Torra. Código disponible bajo <a href="LICENSE" target="_blank" rel="noopener noreferrer""LICENSE">GNU AFFERO GENERAL PUBLIC LICENSE Version 3</a></p>	
         <p>Todas las imagenes de esta página son de dominio público (sin restricciones de copyright).</p>
     </footer>
 	
@@ -172,13 +172,19 @@
         const NUMEROS_MESTRES = [11, 22, 33];
 
         // --- Lògica de Càlcul de Numerologia ---
-        class CalculadoraNumerologia {
-            constructor(nomComplet, dia, mes, any) {
-                this.nomComplet = nomComplet.toUpperCase().trim();
-                this.diaNaixement = parseInt(dia) || 0;
-                this.mesNaixement = parseInt(mes) || 0;
-                this.anyNaixement = parseInt(any) || 0;
-            }
+		class CalculadoraNumerologia {
+			constructor(nomComplet, dia, mes, any) {
+				// --- APLICA LA NORMALITZACIÓ PELS ACCENTS AQUÍ, ABANS DE .toUpperCase() ---
+				this.nomComplet = nomComplet
+					.normalize("NFD") // 1. Descompon els caràcters accentuats (p. ex., 'á' en 'a' + '´')
+					.replace(/[\u0300-\u036f]/g, "") // 2. Elimina els accents i altres diacrítics
+					.toUpperCase() // 3. Converteix a majúscules (ja ho feies)
+					.trim(); // 4. Elimina espais en blanc (ja ho feies)
+
+				this.diaNaixement = parseInt(dia) || 0;
+				this.mesNaixement = parseInt(mes) || 0;
+				this.anyNaixement = parseInt(any) || 0;
+			}
 
             // Funció genèrica per reduir un número a un sol dígit o número mestre
             reduirNumero(num) {
@@ -198,6 +204,7 @@
             }
 
             // Calcula el Camí de Vida
+			// (càlcul: la suma del dia, el mes i l'any)
             calcularCamiVida() {
                 // IMPORTANT: Verifiquem si les dades són vàlides (no undefined/NaN/0)
                 if (!this.diaNaixement || !this.mesNaixement || !this.anyNaixement ||
@@ -209,7 +216,8 @@
                 return suma > 78 ? String(reduit) : `${suma}/${reduit}`;
             }
 
-            // Calcula el Número d'Ànima (vocals)
+            // Calcula el Número d'Ànima 
+			// (càlcul: la suma del valor de totes les vocals)
             calcularAnima() {
                 if (!this.nomComplet || this.nomComplet.length < 2) return "-"; // Si no hi ha nom, retornem '-'
                 const vocals = this.nomComplet.match(/[AEIOUÁÉÍÓÚÀÈÌÒÙÄËÏÖÜ]/gi) || [];
@@ -220,7 +228,8 @@
                 return total > 78 ? String(reduit) : `${total}/${reduit}`;
             }
 
-            // Calcula el Número de la Personalitat (consonants)
+            // Calcula el Número de la Personalitat
+			// (càlcul: la suma del valor de totes les consonants)
             calcularPersonalitat() {
                 if (!this.nomComplet || this.nomComplet.length < 2) return "-"; // Si no hi ha nom, retornem '-'
                 const consonants = this.nomComplet.match(/[BCDFGHJKLMNPQRSTVWXYZÇ]/gi) || [];
@@ -240,6 +249,7 @@
             }
 
             // Calcula el Número de l'Expressió
+			// (càlcul: la suma del número de l'Ànima i el de la Personalitat)
             calcularExpressio() {
                 if (!this.nomComplet || this.nomComplet.length < 2) return "-";
                 // Calculem els totals crus (sense reduir) de Anima i Personalitat
@@ -256,6 +266,7 @@
             }
 
             // Calcula la Missió Còsmica
+			// (càlcul: la suma del número del Camí de Vida i el d'Expressió)
             calcularMissioCosmica() {
                 if (!this.diaNaixement || !this.mesNaixement || !this.anyNaixement || !this.nomComplet || this.nomComplet.length < 2) return "-";
                 
@@ -270,6 +281,7 @@
             }
 
             // Calcula el Número de Força
+			// (càlcul: es suma el dia i el mes de naixement)
             calcularForca() {
                 if (!this.diaNaixement || !this.mesNaixement || isNaN(this.diaNaixement) || isNaN(this.mesNaixement)) return "-";
                 const suma = this.diaNaixement + this.mesNaixement;
@@ -278,6 +290,7 @@
             }
 
             // Calcula el Número d'Equilibri
+			// (càlcul: es sumen els valors de les inicials del nom i els cognoms)
             calcularEquilibri() {
                 if (!this.nomComplet || this.nomComplet.length < 2) return "-";
                 const inicials = this.nomComplet.split(' ')
@@ -291,6 +304,7 @@
             }
 
             // Calcula el Número d'Iniciació Espiritual
+			// (càlcul: la suma del número de la Missió Cósmica
             calcularIniciacioEspiritual() {
                 if (!this.diaNaixement || !this.mesNaixement || !this.anyNaixement || !this.nomComplet || this.nomComplet.length < 2) return "-";
 
@@ -304,6 +318,9 @@
                 const reduit = this.reduirNumero(sumaTotal);
                 return sumaTotal > 78 ? String(reduit) : `${sumaTotal}/${reduit}`;
             }
+
+			/* Funcions que calculen les files de la TaulaDades */
+			
             // Calcula els Habitants (quantes lletres hi ha de cada valor 1-9)
             calcularHabitants() {
                 if (!this.nomComplet || this.nomComplet.length < 2) {
@@ -355,7 +372,9 @@
                 return { nivell1, nivell2, nivell3 };
             }
 			
-            // Calcula els Ponts
+            // Calcula els Ponts iniciàtics p.232
+			// (càlcul: la diferència entre la casa i l'habitant de la casa)
+			// (en cas de número kàrmic el pont correspon a la casa on es troba) 
             calcularPonts(habitants) {
                 if (!Array.isArray(habitants) || habitants.every(h => h === 0)) {
                     return new Array(9).fill(0);
@@ -370,6 +389,7 @@
             }
 
             // Calcula la Proposta d'Evolució
+			// (càlcul: sumar el valor de l'habitant base d'un aspecte amb la quantitat d'habitants amb el mateix valor en *altres* aspectes)
             calcularPropostaEvolucio(habitants) {
                 if (!Array.isArray(habitants) || habitants.every(h => h === 0)) {
                     return new Array(9).fill(0);
@@ -568,7 +588,7 @@
 					inconscient,
 					induccionsInconscientsCalculades // Passem l'objecte complet
 				);
-			},  
+			},
 
 			// Afegeix aquesta nova funció auxiliar a l'objecte `ui`
             reduirNumeroSimple(num) {

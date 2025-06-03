@@ -1,4 +1,5 @@
 TODO: actualitzar es/index.html
+
 TODO: Número d'Iniciació Espiritual no funciona, em surt 4 i al llibre surt un 2. Pàgina 211
 
 
