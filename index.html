@@ -182,6 +182,19 @@
 				}
 			}
 		});
+
+		// Afegeix aquesta funció reduirNumeroSimple al principi del teu script,
+		// just després de les constants (o en una secció de funcions auxiliars).
+		function reduirNumeroSimple(num) {
+			num = parseInt(num);
+			if (isNaN(num)) {
+				return '-'; // Retorna guió si no és un número vàlid
+			}
+			while (num > 9) {
+				num = String(num).split('').reduce((sum, digit) => sum + parseInt(digit), 0);
+			}
+			return num;
+		}
 	
         // Constants per als valors numerològics
         const VALORS_LLETRES_NUMEROLOGIA = {
@@ -192,6 +205,7 @@
 
         const VALORS_VOCALS_ANIMA = { A: 1, E: 5, I: 9, O: 6, U: 3 };
         const NUMEROS_MESTRES = [11, 22, 33];
+
 
         // --- Lògica de Càlcul de Numerologia ---
 		class CalculadoraNumerologia {
@@ -224,7 +238,7 @@
                 }
                 return suma;
             }
-
+			
             // Calcula el Camí de Vida
 			// (càlcul: la suma del dia, el mes i l'any)
             calcularCamiVida() {
@@ -358,44 +372,80 @@
                 return comptadors;
             }
 
-            // Calcula els 3 nivells d'Inducció
-            calcularInduccio(habitants) {
-                if (!Array.isArray(habitants) || habitants.every(h => h === 0)) {
-                    // Retorna un objecte amb arrays de zeros per a tots els nivells si no hi ha dades
-                    return {
-                        nivell1: new Array(9).fill(0),
-                        nivell2: new Array(9).fill(0),
-                        nivell3: new Array(9).fill(0)
-                    };
-                }
 
-                const nivell1 = []; // Aquests són els valors que ja calcules per al 1r nivell
-                // ... (la teva lògica actual per calcular el 1r nivell d'inducció) ...
-                // Exemple:
-                for (let i = 0; i < 9; i++) {
-                    // Exemple de càlcul: Podria ser habitants[i] o una suma/reducció complexa
-                    nivell1.push(habitants[i] > 0 ? this.reduirNumero(habitants[i]) : 0); 
-                }
+			// Calcula els 3 nivells d'Inducció
+			calcularInduccio(habitants) {
+				if (!Array.isArray(habitants) || habitants.every(h => h === 0)) {
+					return {
+						nivell1: new Array(9).fill(0),
+						nivell2: new Array(9).fill(0),
+						nivell3: new Array(9).fill(0)
+					};
+				}
 
-                const nivell2 = []; // Lògica per al 2n nivell
-                // Exemple: Podria dependre del 1r nivell, o d'altres dades
-                for (let i = 0; i < 9; i++) {
-                    // IMPLEMENTA AQUÍ LA TEVA LÒGICA PER AL CÀLCUL DE LA INDUCCIÓ 2N NIVELL
-                    nivell2.push(nivell1[i] > 0 ? this.reduirNumero(nivell1[i] + 1) : 0); // Exemple de lògica
-                }
+				// valorsCases ja no és estrictament necessari aquí perquè fem el mapatge a l'índex directament
+				// const valorsCases = this.valorsCases; 
 
-                const nivell3 = []; // Lògica per al 3r nivell
-                // Exemple: Podria dependre del 2n nivell, o d'altres dades
-                for (let i = 0; i < 9; i++) {
-                    // IMPLEMENTA AQUÍ LA TEVA LÒGICA PER AL CÀLCUL DE LA INDUCCIÓ 3R NIVELL
-                    nivell3.push(nivell2[i] > 0 ? this.reduirNumero(nivell2[i] + 2) : 0); // Exemple de lògica
-                }
+				const nivell1 = [];
+				for (let i = 0; i < 9; i++) {
+					const valorHabitantsDeLaCasaActual = habitants[i]; // Aquest és el teu 'X' (pot ser > 9)
 
-                return { nivell1, nivell2, nivell3 };
-            }
+					if (valorHabitantsDeLaCasaActual > 0) { // Només si hi ha habitants en aquesta casa
+						// REDUÏM EL VALOR DELS HABITANTS DE LA CASA ACTUAL ABANS D'UTILITZAR-LO PER APUNTAR A LA CASA INDUCTORA
+						const valorXReduit = reduirNumeroSimple(valorHabitantsDeLaCasaActual);
+
+						// Ara, utilitzem el valor reduït per trobar la casa que indueix
+						// (valorXReduit - 1) és l'índex a l'array 'habitants'
+						const habitantDeLaCasaQueIndueix = habitants[valorXReduit - 1];
+						
+						// Afegim el valor trobat. Si l'índex apuntat no existeix (cosa que no hauria de passar ara amb la reducció),
+						// o si el valor és undefined (per exemple, si habitants[valorXReduit - 1] no existeix), afegim 0.
+						nivell1.push(habitantDeLaCasaQueIndueix !== undefined ? habitantDeLaCasaQueIndueix : 0);
+						
+						// console.log(`Casa ${i+1}: Habitant=${valorHabitantsDeLaCasaActual}. ValorXReduit=${valorXReduit}. Buscant habitant de Casa ${valorXReduit}. Trobat: ${habitantDeLaCasaQueIndueix}. Nivell 1: ${nivell1[i]}`); // DEBUG
+					} else {
+						// Si l'habitant de la casa actual és 0, la inducció és 0
+						nivell1.push(0);
+					}
+				}
+				// console.log('calcularInduccio: Nivell 1 calculat:', nivell1); // DEBUG
+
+				const nivell2 = [];
+				for (let i = 0; i < 9; i++) {
+					const valorNivell1Actual = nivell1[i]; // Aquest és el valor que s'indueix
+
+					if (valorNivell1Actual > 0) {
+						// REDUÏM EL VALOR DEL NIVELL 1 ABANS D'UTILITZAR-LO PER APUNTAR
+						const valorXReduit = reduirNumeroSimple(valorNivell1Actual);
+						const habitantDeLaCasaQueIndueix = habitants[valorXReduit - 1];
+						nivell2.push(habitantDeLaCasaQueIndueix !== undefined ? habitantDeLaCasaQueIndueix : 0);
+					} else {
+						nivell2.push(0);
+					}
+				}
+				// console.log('calcularInduccio: Nivell 2 calculat:', nivell2); // DEBUG
+
+				const nivell3 = [];
+				for (let i = 0; i < 9; i++) {
+					const valorNivell2Actual = nivell2[i];
+
+					if (valorNivell2Actual > 0) {
+						// REDUÏM EL VALOR DEL NIVELL 2 ABANS D'UTILITZAR-LO PER APUNTAR
+						const valorXReduit = reduirNumeroSimple(valorNivell2Actual);
+						const habitantDeLaCasaQueIndueix = habitants[valorXReduit - 1];
+						nivell3.push(habitantDeLaCasaQueIndueix !== undefined ? habitantDeLaCasaQueIndueix : 0);
+					} else {
+						nivell3.push(0);
+					}
+				}
+				// console.log('calcularInduccio: Nivell 3 calculat:', nivell3); // DEBUG
+
+				return { nivell1, nivell2, nivell3 };
+			}
 			
             // Calcula els Ponts iniciàtics p.232
 			// (càlcul: la diferència entre la casa i l'habitant de la casa)
+			// (s'usen la totalitat dels habitants sense reduïr)
 			// (en cas de número kàrmic el pont correspon a la casa on es troba) 
             calcularPonts(habitants) {
                 if (!Array.isArray(habitants) || habitants.every(h => h === 0)) {
@@ -510,8 +560,21 @@
             handleInputChange() {
 				// CORRECCIÓ AQUÍ: Accedir a errorPDF a través de this.elements
                 this.elements.errorPDF.style.display = 'none'; // Abans era this.errorPDF
-                this.actualitzarCalculs();            },
-
+                this.actualitzarCalculs();            
+			},
+			
+			getInputValor: function(id) {
+				//console.log(`Intentant obtenir valor de l'element amb ID: ${id}`); // DEBUG
+				const element = document.getElementById(id);
+				if (element) {
+					//console.log(`Element ${id} trobat. Valor: ${element.value}`); // DEBUG
+					return element.value;
+				} else {
+					//console.warn(`Element amb ID '${id}' no trobat.`); // DEBUG
+					return ''; // Retorna una cadena buida si l'element no existeix
+				}
+			},
+			
             // Reseteja els resultats a la interfície
             netejarResultats() {
                 // Netejar els camps individuals de resultats
@@ -539,12 +602,13 @@
 			actualitzarCalculs() {
 				this.netejarResultats(); // Neteja totes les cel·les amb '-' o buit al principi
 
-				const nom = this.elements.nomInput.value.trim();
-				const dia = this.elements.diaInput.value;
-				const mes = this.elements.mesInput.value;
-				const any = this.elements.anyInput.value;
+				const nom = this.getInputValor('nomInput');
+				const dia = parseInt(this.getInputValor('dia'));
+				const mes = parseInt(this.getInputValor('mes'));
+				const any = parseInt(this.getInputValor('any'));
 
-				const calculadora = new CalculadoraNumerologia(nom, dia, mes, any);
+				// Creació de la instància de CalculadoraNumerologia
+				const calculadora = new CalculadoraNumerologia(nom, dia, mes, any, this.valorsCases); // Asegura't que this.valorsCases s'inicialitza
 
 				// --- Càlcul i actualització dels resultats de l'arbre (Anima, Personalitat, Expressio, CamiVida, etc.) ---
 				const resultatsCalculats = {
@@ -572,11 +636,11 @@
 						const valorReduit = parseInt(valorParts.pop());
 
 						if (NUMEROS_MESTRES.includes(valorReduit)) {
-							// Aquí ja hi ha una reducció simple si és mestre, assegura't que és la desitjada
-							element.innerHTML = `${valorReduit}/${this.reduirNumeroSimple(valorReduit)}`;
+							// ARA ÉS UNA FUNCIÓ GLOBAL, SENSE 'this.'
+							element.innerHTML = `${valorReduit}/${reduirNumeroSimple(valorReduit)}`; // <-- CORRECCIÓ
 							element.classList.add("numero-mestre");
 						} else {
-							element.innerHTML = valorCompleix; // Aquest valor ja hauria de ser reduït o el final desitjat
+							element.innerHTML = valorCompleix;
 							element.classList.remove("numero-mestre");
 						}
 					}
@@ -611,20 +675,15 @@
 					induccionsInconscientsCalculades // Passem l'objecte complet
 				);
 			},
-
-            // Afegeix aquesta nova funció auxiliar a l'objecte `ui`
-            reduirNumeroSimple(num) {
-                // Aquesta funció fa la reducció simple per als mestres (11->2, 22->4, 33->6)
-				num = parseInt(num); // <-- Afegeix això per assegurar que és un enter
-				if (isNaN(num)) {
-					return '-'; // Retorna guió si no és un número vàlid
-				}
-                while (num > 9) {
-                    num = String(num).split('').reduce((sum, digit) => sum + parseInt(digit), 0);
-                }
-                return num;
-            },
 			
+			obtenirValorTaulaDades(valor) { // Ja no necessita 'calculadora' aquí
+				if (valor === '-' || valor === 0 || valor === undefined || isNaN(valor)) {
+					return '-';
+				}
+				// Ara crida la funció GLOBAL 'reduirNumeroSimple'
+				return reduirNumeroSimple(valor);
+			},			
+
             // Funció per afegir/actualitzar les files a taulaDades
 			actualitzarTaulaDades(
 				habitants, // ATENCIÓ: Aquest 'habitants' és l'ARRAY de comptadors (e.g., [0, 1, 2, ...])
@@ -644,9 +703,10 @@
 						return '-';
 					}
 					// Si és un número, el reduïm a un sol dígit
-					return this.reduirNumeroSimple(valor);
+					// Utilitzem la instància de la calculadora passada com a argument
+					return reduirNumeroSimple(valor);
 				};
-
+				
 				// Fila 2 (índex 1): habitants
 				// 1. Selecciona totes les cel·les amb la classe 'habitants-cell'
 				const habitantsCells = document.querySelectorAll('.habitants-cell'); 
@@ -657,7 +717,7 @@
 				// i també a la cel·la (0-8) dins del NodeList 'habitantsCells'.
 				for (let i = 0; i < habitants.length; i++) {
 					const valorOriginal = habitants[i]; // Aquest és el comptador (e.g., 10, 12)
-					const valorReduit = obtenirValorTaulaDades(valorOriginal); // Aquí el reduïm
+					const valorReduit = this.obtenirValorTaulaDades(valorOriginal); // Aquí el reduïm
 					
 					// Assegura't que hi ha una cel·la corresponent en la llista seleccionada
 					if (habitantsCells[i]) {
@@ -670,55 +730,63 @@
 				// Fila 3 (índex 2): Inducció 1r nivell
 				for (let i = 0; i < 9; i++) {
 					const valor = induccionsCalculades.nivell1[i];
-					taulaDades.rows[2].cells[i + 1].textContent = obtenirValorTaulaDades(valor);
+					taulaDades.rows[2].cells[i + 1].textContent = this.obtenirValorTaulaDades(valor);
 				}
 
 				// Fila 4 (índex 3): Inducció 2n nivell
 				for (let i = 0; i < 9; i++) {
 					const valor = induccionsCalculades.nivell2[i];
-					taulaDades.rows[3].cells[i + 1].textContent = obtenirValorTaulaDades(valor);
+					taulaDades.rows[3].cells[i + 1].textContent = this.obtenirValorTaulaDades(valor);
 				}
 
 				// Fila 5 (índex 4): Inducció 3r nivell
 				for (let i = 0; i < 9; i++) {
 					const valor = induccionsCalculades.nivell3[i];
-					taulaDades.rows[4].cells[i + 1].textContent = obtenirValorTaulaDades(valor);
+					taulaDades.rows[4].cells[i + 1].textContent = this.obtenirValorTaulaDades(valor);
 				}
 
 				// Fila 6 (índex 5): Ponts
 				for (let i = 0; i < 9; i++) {
-					const valor = ponts[i]; // Ponts ja deuen ser reduïts si s'han de reduir a la Calculadora
-					taulaDades.rows[5].cells[i + 1].textContent = obtenirValorTaulaDades(valor);
-				}
+					const valorCalculatDelPont = ponts[i]; // Aquest és el valor calculat per calculadora.calcularPonts()
+					const valorCasa = i + 1; // La casa és el número 1-9 (l'índex + 1)
 
+					// Si el valor del pont és 0, mostra el número de la Casa (valorCasa),
+					// si no, mostra el valor del pont (reduït si cal, amb obtenirValorTaulaDades).
+					if (valorCalculatDelPont === 0) {
+						taulaDades.rows[5].cells[i + 1].textContent = String(valorCasa);
+					} else {
+						taulaDades.rows[5].cells[i + 1].textContent = reduirNumeroSimple(valorCalculatDelPont);
+					}
+				}
+				
 				// Fila 7 (índex 6): Proposta Evolució
 				for (let i = 0; i < 9; i++) {
 					const valor = propostaEvolucio[i];
-					taulaDades.rows[6].cells[i + 1].textContent = obtenirValorTaulaDades(valor);
+					taulaDades.rows[6].cells[i + 1].textContent = this.obtenirValorTaulaDades(valor);
 				}
 
 				// Fila 8 (índex 7): Inconscient
 				for (let i = 0; i < 9; i++) {
 					const valor = inconscient[i]; // Aquest valor potser ja ha de ser reduït de la Calculadora
-					taulaDades.rows[7].cells[i + 1].textContent = obtenirValorTaulaDades(valor);
+					taulaDades.rows[7].cells[i + 1].textContent = this.obtenirValorTaulaDades(valor);
 				}
 
 				// Fila 9 (índex 8): Inducció 1r nivell Inconscient
 				for (let i = 0; i < 9; i++) {
 					const valor = induccionsInconscientsCalculades.nivell1[i];
-					taulaDades.rows[8].cells[i + 1].textContent = obtenirValorTaulaDades(valor);
+					taulaDades.rows[8].cells[i + 1].textContent = this.obtenirValorTaulaDades(valor);
 				}
 
 				// Fila 10 (índex 9): Inducció 2n nivell Inconscient
 				for (let i = 0; i < 9; i++) {
 					const valor = induccionsInconscientsCalculades.nivell2[i];
-					taulaDades.rows[9].cells[i + 1].textContent = obtenirValorTaulaDades(valor);
+					taulaDades.rows[9].cells[i + 1].textContent = this.obtenirValorTaulaDades(valor);
 				}
 
 				// Fila 11 (índex 10): Inducció 3r nivell Inconscient
 				for (let i = 0; i < 9; i++) {
 					const valor = induccionsInconscientsCalculades.nivell3[i];
-					taulaDades.rows[10].cells[i + 1].textContent = obtenirValorTaulaDades(valor);
+					taulaDades.rows[10].cells[i + 1].textContent = this.obtenirValorTaulaDades(valor);
 				}
 
 				// Si tens les altres 4 files (Relació Anima-Inconscient, etc.) a l'HTML,
