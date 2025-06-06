@@ -302,25 +302,53 @@ class CalculadoraNumerologia {
 	}
 
 	// Calcula la Proposta d'Evolució
-	// (càlcul: sumar el valor de l'habitant base d'un aspecte amb la quantitat d'habitants amb el mateix valor en *altres* aspectes)
+	// (sumar el valor de l'habitant d'una casa a la *quantitat* d'habitants amb el mateix valor en *totes* les cases (inclosa la casa sobre la que fem el càlcul).
 	calcularPropostaEvolucio(habitants) {
 		if (!Array.isArray(habitants) || habitants.every(h => h === 0)) {
 			return new Array(9).fill(0);
 		}
+
 		const propostaEvolucio = [];
+
+		// Pre-calcular les freqüències de cada número (1-9) en l'array d'habitants.
+		// Això ens permetrà consultar-les ràpidament.
+		const comptadorValors = {};
+		for (let i = 1; i <= 9; i++) { // Iterem pels valors de l'1 al 9
+			// Comptem quantes vegades apareix el número 'i' com a habitant
+			// de QUALSEVOL casa (després de reduir-lo si és necessari).
+			const freq = habitants.filter(h => reduirNumeroSimple(h) === i).length;
+			comptadorValors[i] = freq;
+		}
+
+		// Ara, apliquem la lògica per a cada casa (de l'1 al 9)
 		for (let i = 0; i < 9; i++) {
-			const valorActual = habitants[i];
-			let comptador = 0;
-			for (let j = 0; j < 9; j++) {
-				if (i !== j && habitants[j] === valorActual) {
-					comptador++;
-				}
+			const valorHabitantActual = habitants[i]; // El valor de l'habitant d'aquesta casa (p. ex., 8 per a Casa 1)
+			const valorHabitantReduit = reduirNumeroSimple(valorHabitantActual);
+
+			let quantitatACometar;
+
+			// Si l'habitant actual no es pot reduir a un número vàlid (e.g., és '-'),
+			// o si el valor reduït no existeix en el comptador (per exemple, si reduirNumeroSimple retorna un mestre
+			// que no es gestiona en el comptador 1-9), tractem-ho.
+			if (valorHabitantReduit === '-' || !comptadorValors.hasOwnProperty(valorHabitantReduit)) {
+				 quantitatACometar = 0; // O el que sigui la teva regla per a valors no numèrics
+			} else {
+				// Aquesta és la quantitat de cases que tenen un habitant amb valor igual a la CASA ACTUAL (i+1)
+				// No és la freqüència del 'valorHabitantReduit' en sí, sinó la freqüència del número de la casa.
+				// Segons la teva última explicació: "si estem a la Casa 1, comptem quantes cases tenen un 1 com a habitant".
+				// Això vol dir que la "quantitat" que se suma és la freqüència del NÚMERO DE LA CASA (i+1).
+				const numeroDeLaCasa = i + 1;
+				quantitatACometar = comptadorValors[numeroDeLaCasa] || 0;
 			}
-			propostaEvolucio.push(valorActual + comptador);
+
+			// El resultat és el valor de l'habitant de la casa actual (reduït) + la quantitat calculada
+			let sumaTotal = valorHabitantReduit + quantitatACometar;
+			
+			propostaEvolucio.push(sumaTotal);
 		}
 		return propostaEvolucio;
-	}
-
+	}	
+	
 	// Calcula l'Inconscient
 	calcularInconscient(habitants) {
 		if (!Array.isArray(habitants) || habitants.every(h => h === 0)) {
