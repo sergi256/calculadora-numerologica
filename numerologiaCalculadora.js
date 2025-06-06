@@ -302,7 +302,7 @@ class CalculadoraNumerologia {
 	}
 
 	// Calcula la Proposta d'Evolució
-	// (sumar el valor de l'habitant d'una casa a la *quantitat* d'habitants amb el mateix valor en *totes* les cases (inclosa la casa sobre la que fem el càlcul).
+	// (Càlcul: comencem per la casa 1 i busquem *quantes* cases tenen habitants igual a 1. Aquesta quantitat la sumem al valor de l'habitant de la casa 1 i tenim el valor de l'evolució per la casa 1.).
 	calcularPropostaEvolucio(habitants) {
 		if (!Array.isArray(habitants) || habitants.every(h => h === 0)) {
 			return new Array(9).fill(0);
@@ -350,15 +350,43 @@ class CalculadoraNumerologia {
 	}	
 	
 	// Calcula l'Inconscient
+	// (càlcul: per cada casa mirem quin és el valor del seu habitant (X) i el resultat de l'inconscient d'aquella casa és el valor de la lletra del seu nom que es troba en la posició X, descartant els espais)
 	calcularInconscient(habitants) {
 		if (!Array.isArray(habitants) || habitants.every(h => h === 0)) {
-			return new Array(9).fill(0);
+			return new Array(9).fill(0); // Retorna un array de zeros si no hi ha dades
 		}
-		// La lògica és idèntica a calcularPropostaEvolucio amb la definició actual.
-		// Es manté com a funció separada per si les regles divergeixen en el futur.
-		return this.calcularPropostaEvolucio(habitants);
-	}
 
+		// El nom sense espais i ja processat (majúscules, accents eliminats)
+		const nomSenseEspais = this.nomComplet.replace(/\s/g, '');
+
+		const inconscientResultat = [];
+
+		for (let i = 0; i < 9; i++) { // Iterem per cada una de les 9 cases
+			const valorHabitantX = habitants[i]; // El valor de l'habitant de la casa actual (p. ex., 8)
+
+			// Validació: si el valor de l'habitant no és un número vàlid, és zero, o excedeix la longitud del nom,
+			// retornem 0 per a aquesta posició.
+			if (isNaN(valorHabitantX) || valorHabitantX <= 0 || valorHabitantX > nomSenseEspais.length) {
+				inconscientResultat.push(0);
+				continue;
+			}
+
+			// La posició de la lletra en el nom (ajustant per índex base 0)
+			// Si l'habitant és 8, l'índex és 7.
+			const indexLletra = valorHabitantX - 1;
+
+			// Obtenim la lletra en aquesta posició
+			const lletra = nomSenseEspais[indexLletra];
+
+			// Obtenim el valor numerològic de la lletra
+			// Si la lletra no es troba en VALORS_LLETRES_NUMEROLOGIA, el valor és 0
+			const valorLletra = VALORS_LLETRES_NUMEROLOGIA[lletra] || 0;
+
+			inconscientResultat.push(valorLletra);
+		}
+		return inconscientResultat;
+	}
+	
 	// Calcula la Inducció de l'Inconscient
 	calcularInduccioInconscient(inconscient) {
 		if (!Array.isArray(inconscient) || inconscient.every(i => i === 0)) {
