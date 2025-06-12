@@ -322,7 +322,7 @@ const ui = {
 				["Número de la Personalitat", document.getElementById("personalitat").innerText, "Aspectes a desenvolupar per ajudar l'ànima"],
 				["Número de l'Expressió", document.getElementById("expressio").innerText, "Revela el nostre comportament exterior en la vida"],
 				["Número de la Missió Còsmica", document.getElementById("missiocosmica").innerText, "Representa el propòsit de la nostra vida en el nostre procés evolutiu"],
-				["Número de Força", document.getElementById("força").innerText, "Representa els dons que tenim que podem usar com a comodíns o acceleradors de la vida"],
+				["Número de Força", document.getElementById("forca").innerText, "Representa els dons que tenim que podem usar com a comodíns o acceleradors de la vida"],
 				["Número d'Equilibri", document.getElementById("equilibri").innerText, "Representa les eines que hem de desenvolupar per adquirir l'equilibri a la nostra vida"],
 				["Número d'Iniciació Espiritual", document.getElementById("iniespiritual").innerText, "Ens proposa un camí espiritual que ens ajudarà a complir els nostres objectius en aquesta vida"],
 			];
