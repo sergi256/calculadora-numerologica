@@ -70,7 +70,6 @@ export class UIManager {
         }
 
         this.initEventListeners();
-        this.localizationManager.translateUI();
         this.loadInitialData();
         this.actualitzarCalculs(); // Realitza els càlculs inicials i actualitza la UI
     }
@@ -232,7 +231,7 @@ export class UIManager {
         }
     }
     
-    
+
     omplirTaulaDades(
         habitants,
         induccionsCalculades,

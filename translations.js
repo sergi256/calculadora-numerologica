@@ -11,6 +11,10 @@
 export const translations = {
     // --- Català (ca) ---
     'ca': {
+        'title_main': 'CalculadoraSSS Numerològica',
+        'banner_text': 'Calculadora NumerològicaEina per calcular els nombres del teu nom i data de naixement segons els principis de la numerologia aplicada per Martine Coquatrix.',
+        'title_camp_text': 'El teu Nom i els teus quatre Cognoms:',
+
         // Textos del PDF - Secció "Informe Numerològic"
         'informe_titol': 'Informe Numerològic',
         'informe_subtitol_anonim': 'Anònim',
@@ -67,6 +71,10 @@ export const translations = {
 
     // --- Castellano (es) ---
     'es': {
+        'title_main': 'CalculadoraSSS Numerològica',
+        'banner_text': 'Calculadora NumerològicaEina per calcular els nombres del teu nom i data de naixement segons els principis de la numerologia aplicada per Martine Coquatrix.',
+        'title_camp_text': 'El teu Nom i els teus quatre Cognoms:',
+
         // Textos del PDF - Sección "Informe Numerológico"
         'informe_titol': 'Informe Numerológico',
         'informe_subtitol_anonim': 'Anónimo',

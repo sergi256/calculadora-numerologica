@@ -57,6 +57,17 @@ export class LocalizationManager {
                 console.warn(`[LocalizationManager] Clau de traducció no trobada per a l'element '${key}' en l'idioma '${this.currentLang}'.`);
             }
         });
+        
+        // Traducció manual del <title>
+        const titleKey = 'title_main';
+        if (this.texts[titleKey]) {
+            document.title = this.texts[titleKey];
+
+
+            
+                console.log("Nou títol:", document.title); // <-- Afegit per depurar
+
+        }
     }
 
     /**
