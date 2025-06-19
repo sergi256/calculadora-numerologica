@@ -41,7 +41,7 @@ const NUMEROS_MESTRES = [11, 22, 33];
 
 
 // --- Lògica de Càlcul de Numerologia ---
-class CalculadoraNumerologia {
+export class CalculadoraNumerologia {
     constructor(nomComplet, dia, mes, any) {
         // Assegurem que 'nomComplet' sigui sempre una cadena abans d'aplicar qualsevol mètode.
         // Si 'nomComplet' és null, undefined o qualsevol valor "falsy", es convertirà en una cadena buida.
