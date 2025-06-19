@@ -52,22 +52,27 @@ export class LocalizationManager {
         document.querySelectorAll('[data-i18n]').forEach(element => {
             const key = element.getAttribute('data-i18n');
             if (this.texts[key]) {
-                element.innerText = this.texts[key];
+                element.innerHTML = this.texts[key];
             } else {
                 console.warn(`[LocalizationManager] Clau de traducció no trobada per a l'element '${key}' en l'idioma '${this.currentLang}'.`);
             }
         });
         
-        // Traducció manual del <title>
+        // Traducció manual del <title> dins <head>
+        // Això és important perquè alguns navegadors no actualitzen el títol automàticament
+        // quan es canvia el text dels elements del DOM.
         const titleKey = 'title_main';
         if (this.texts[titleKey]) {
             document.title = this.texts[titleKey];
-
-
-            
-                console.log("Nou títol:", document.title); // <-- Afegit per depurar
-
         }
+
+        // Traducció manual del <meta name="description">
+        const metaDescription = document.querySelector('meta[name="description"]');
+        const descKey = 'meta_description';
+        if (metaDescription && this.texts[descKey]) {
+            metaDescription.setAttribute('content', this.texts[descKey]);
+        }
+
     }
 
     /**

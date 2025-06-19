@@ -11,8 +11,9 @@
 export const translations = {
     // --- Català (ca) ---
     'ca': {
-        'title_main': 'CalculadoraSSS Numerològica',
-        'banner_text': 'Calculadora NumerològicaEina per calcular els nombres del teu nom i data de naixement segons els principis de la numerologia aplicada per Martine Coquatrix.',
+        'title_main': 'Calculadora Numerològica', // S'usa per el <title> i per a <h1>
+        'meta_description': 'Calculadora numerològica per descobrir els teus números personals.',
+        'disclaimer-banner_text': 'Aquesta pàgina automatitza el càlcul de les <b>Àrees Clau</b> i de la <b>Inclusió</b> tal com explica <b>Martine Coquatrix</b> en el seu llibre <a href="https://libreriaepsilon.com/catalogo/la-numerologia-a-la-luz-del-arbol-de-la-vida-y-las-letras-hebraicas" target="_blank" rel="noopener noreferrer">La numerología a la luz del árbol de vida y las letras hebraicas</a>. El propòsit és facilitar aquests càlculs a les persones que vulguin endinsar-se en aquest llibre tan interessant.',
         'title_camp_text': 'El teu Nom i els teus quatre Cognoms:',
 
         // Textos del PDF - Secció "Informe Numerològic"
@@ -71,8 +72,9 @@ export const translations = {
 
     // --- Castellano (es) ---
     'es': {
-        'title_main': 'CalculadoraSSS Numerològica',
-        'banner_text': 'Calculadora NumerològicaEina per calcular els nombres del teu nom i data de naixement segons els principis de la numerologia aplicada per Martine Coquatrix.',
+        'title_main': 'Calculadora Numerológica', // S'usa per al <title> i per a <h1>
+        'meta_description': 'Calculadora numerológica para descubrir tus números personales.',        
+        'disclaimer-banner_text': 'Esta página automatiza el cálculo de las <b>Áreas Clave</b> y de la <b>Inclusión</b> tal como explica <b>Martine Coquatrix</b> en su libro <a href="https://libreriaepsilon.com/catalogo/la-numerologia-a-la-luz-del-arbol-de-la-vida-y-las-letras-hebraicas" target="_blank" rel="noopener noreferrer">La Numerología a la luz del Árbol de Vida y las Letras Hebraicas</a>. El propósito es facilitar estos cálculos a las personas que quieran adentrarse en este libro tan interesante.',
         'title_camp_text': 'El teu Nom i els teus quatre Cognoms:',
 
         // Textos del PDF - Sección "Informe Numerológico"

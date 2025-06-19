@@ -1,5 +1,4 @@
 // main.js
-console.log("main.js carregat");
 
 import { CalculadoraNumerologia } from './numerologiaCalculadora.js';
 import { UIManager } from './uiManager.js';
