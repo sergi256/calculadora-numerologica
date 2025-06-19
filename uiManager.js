@@ -146,6 +146,7 @@ export class UIManager {
         });
     }
 
+    // ...existing code...
     actualitzarCalculs() {
         this.netejarResultats();
 
@@ -154,77 +155,84 @@ export class UIManager {
         const mes = parseInt(this.elements.mesInput.value);
         const any = parseInt(this.elements.anyInput.value);
 
-        // Re-instanciem la calculadora amb les noves dades dels inputs
+        // Re-instanciem la calculadora amb les dades actuals (potser incompletes)
         this.calculadora = new CalculadoraNumerologia(nom, dia, mes, any);
 
         const texts = this.localizationManager.getTranslatedTexts();
 
-        // Condició per realitzar els càlculs només si hi ha dades suficients i vàlides
-        if (nom && nom.trim() !== '' && !isNaN(dia) && dia > 0 && dia <= 31 && !isNaN(mes) && mes > 0 && mes <= 12 && !isNaN(any) && any >= 1900 && any <= 2100) {
-            const resultatsCalculats = {
-                camivida: this.calculadora.calcularCamiVida(),
-                anima: this.calculadora.calcularAnima(),
-                personalitat: this.calculadora.calcularPersonalitat(),
-                expressio: this.calculadora.calcularExpressio(),
-                missiocosmica: this.calculadora.calcularMissioCosmica(),
-                forca: this.calculadora.calcularForca(),
-                equilibri: this.calculadora.calcularEquilibri(),
-                iniespiritual: this.calculadora.calcularIniciacioEspiritual(),
-            };
+        // Àrees clau: calcula només si hi ha prou dades per a cada càlcul
+        const resultatsCalculats = {
+            camivida: (!isNaN(dia) && !isNaN(mes) && !isNaN(any) && dia > 0 && mes > 0 && any > 0)
+                ? this.calculadora.calcularCamiVida() : "-",
+            anima: (nom) ? this.calculadora.calcularAnima() : "-",
+            personalitat: (nom) ? this.calculadora.calcularPersonalitat() : "-",
+            expressio: (nom) ? this.calculadora.calcularExpressio() : "-",
+            missiocosmica: (nom && !isNaN(dia) && !isNaN(mes) && !isNaN(any) && dia > 0 && mes > 0 && any > 0)
+                ? this.calculadora.calcularMissioCosmica() : "-",
+            forca: (nom && !isNaN(dia) && !isNaN(mes) && !isNaN(any) && dia > 0 && mes > 0 && any > 0)
+                ? this.calculadora.calcularForca() : "-",
+            equilibri: (nom && !isNaN(dia) && !isNaN(mes) && !isNaN(any) && dia > 0 && mes > 0 && any > 0)
+                ? this.calculadora.calcularEquilibri() : "-",
+            iniespiritual: (nom && !isNaN(dia) && !isNaN(mes) && !isNaN(any) && dia > 0 && mes > 0 && any > 0)
+                ? this.calculadora.calcularIniciacioEspiritual() : "-",
+        };
 
-            for (const tipus in resultatsCalculats) {
-                const valorCompleix = resultatsCalculats[tipus];
-                const element = this.elements[tipus]; // Accedim directament a l'element pel seu nom a this.elements
+        for (const tipus in resultatsCalculats) {
+            const valorCompleix = resultatsCalculats[tipus];
+            const element = this.elements[tipus];
 
-                if (element) {
-                    if (valorCompleix === '-') {
-                        element.textContent = "-";
-                        element.classList.remove("numero-mestre");
+            if (element) {
+                if (valorCompleix === "-") {
+                    element.textContent = "-";
+                    element.classList.remove("numero-mestre");
+                } else {
+                    const valorParts = String(valorCompleix).split('/');
+                    const valorReduit = parseInt(valorParts.slice(-1)[0]);
+                    if (NUMEROS_MESTRES.includes(valorReduit)) {
+                        element.textContent = `${valorReduit}/${reduirNumeroSimple(valorReduit)}`;
+                        element.classList.add("numero-mestre");
                     } else {
-                        const valorParts = String(valorCompleix).split('/');
-                        const valorReduit = parseInt(valorParts.slice(-1)[0]); // Últim element de l'array
-
-                        if (NUMEROS_MESTRES.includes(valorReduit)) {
-                            element.textContent = `${valorReduit}/${reduirNumeroSimple(valorReduit)}`;
-                            element.classList.add("numero-mestre");
-                        } else {
-                            element.textContent = valorCompleix;
-                            element.classList.remove("numero-mestre");
-                        }
+                        element.textContent = valorCompleix;
+                        element.classList.remove("numero-mestre");
                     }
-
-                    // Actualitzem el significat per a la fila actual (la tercera columna del tr)
-                    const fila = element.closest('tr');
-                    if (fila) {
-                        const tdSignificat = fila.querySelector('[data-i18n$="_significat"]');
-                        if (tdSignificat && texts[`${tipus}_significat`]) {
-                            tdSignificat.innerText = texts[`${tipus}_significat`];
-                        }
+                }
+                // Actualitza el significat
+                const fila = element.closest('tr');
+                if (fila) {
+                    const tdSignificat = fila.querySelector('[data-i18n$="_significat"]');
+                    if (tdSignificat && texts[`${tipus}_significat`]) {
+                        tdSignificat.innerText = texts[`${tipus}_significat`];
                     }
                 }
             }
+        }
 
-            // Càlculs i actualització de les taules dependents de l'estructura
-            const habitants = this.calculadora.calcularHabitants();
-            const inconscient = this.calculadora.calcularInconscient(habitants);
-            const induccionsCalculades = this.calculadora.calcularInduccio(habitants);
-            const induccionsInconscientsCalculades = this.calculadora.calcularInduccioInconscient(inconscient);
-            const ponts = this.calculadora.calcularPonts(habitants);
-            const propostaEvolucio = this.calculadora.calcularPropostaEvolucio(habitants);
+        // Taula de dades: només omple si hi ha prou dades bàsiques
+        if (nom || (!isNaN(dia) && !isNaN(mes) && !isNaN(any) && dia > 0 && mes > 0 && any > 0)) {
+            // Si vols, pots afinar encara més la lògica per omplir només files concretes
+            try {
+                const habitants = this.calculadora.calcularHabitants();
+                const inconscient = this.calculadora.calcularInconscient(habitants);
+                const induccionsCalculades = this.calculadora.calcularInduccio(habitants);
+                const induccionsInconscientsCalculades = this.calculadora.calcularInduccioInconscient(inconscient);
+                const ponts = this.calculadora.calcularPonts(habitants);
+                const propostaEvolucio = this.calculadora.calcularPropostaEvolucio(habitants);
 
-            this.omplirTaulaDades(
-                habitants,
-                induccionsCalculades,
-                ponts,
-                propostaEvolucio,
-                inconscient,
-                induccionsInconscientsCalculades
-            );
-        } else {
-            // Si les dades són insuficients, netegem i ja està (ja s'ha cridat netejarResultats al principi).
+                this.omplirTaulaDades(
+                    habitants,
+                    induccionsCalculades,
+                    ponts,
+                    propostaEvolucio,
+                    inconscient,
+                    induccionsInconscientsCalculades
+                );
+            } catch (e) {
+                // Si hi ha error de càlcul, deixa la taula buida
+            }
         }
     }
-
+    
+    
     omplirTaulaDades(
         habitants,
         induccionsCalculades,
