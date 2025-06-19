@@ -253,28 +253,28 @@ export class UIManager {
         // Fila 1 (índex 1 de rows): Habitants
         const habitantsCells = rows[1].querySelectorAll('td:not(:first-child)');
         habitantsCells.forEach((cell, i) => {
-            if (habitants[i] !== undefined) cell.textContent = reduirNumeroSimple(habitants[i]);
+            if (habitants[i] !== undefined) cell.textContent = (habitants[i] === 0) ? '*' : reduirNumeroSimple(habitants[i]);
             else cell.textContent = '-';
         });
 
         // Fila 2 (índex 2 de rows): Inducció 1r nivell
         const induccio1Cells = rows[2].querySelectorAll('td:not(:first-child)');
         induccio1Cells.forEach((cell, i) => {
-            if (induccionsCalculades.nivell1[i] !== undefined) cell.textContent = reduirNumeroSimple(induccionsCalculades.nivell1[i]);
+            if (induccionsCalculades.nivell1[i] !== undefined) cell.textContent = (induccionsCalculades.nivell1[i] === 0) ? '*' : reduirNumeroSimple(induccionsCalculades.nivell1[i]);
             else cell.textContent = '-';
         });
 
         // Fila 3 (índex 3 de rows): Inducció 2n nivell
         const induccio2Cells = rows[3].querySelectorAll('td:not(:first-child)');
         induccio2Cells.forEach((cell, i) => {
-            if (induccionsCalculades.nivell2[i] !== undefined) cell.textContent = reduirNumeroSimple(induccionsCalculades.nivell2[i]);
+            if (induccionsCalculades.nivell2[i] !== undefined) cell.textContent = (induccionsCalculades.nivell2[i] === 0) ? '*' : reduirNumeroSimple(induccionsCalculades.nivell2[i]);
             else cell.textContent = '-';
         });
 
         // Fila 4 (índex 4 de rows): Inducció 3r nivell
         const induccio3Cells = rows[4].querySelectorAll('td:not(:first-child)');
         induccio3Cells.forEach((cell, i) => {
-            if (induccionsCalculades.nivell3[i] !== undefined) cell.textContent = reduirNumeroSimple(induccionsCalculades.nivell3[i]);
+            if (induccionsCalculades.nivell3[i] !== undefined) cell.textContent = (induccionsCalculades.nivell3[i] === 0) ? '*' : reduirNumeroSimple(induccionsCalculades.nivell3[i]);
             else cell.textContent = '-';
         });
 
@@ -294,35 +294,35 @@ export class UIManager {
         // Fila 6 (índex 6 de rows): Proposta Evolució
         const propostaEvolucioCells = rows[6].querySelectorAll('td:not(:first-child)');
         propostaEvolucioCells.forEach((cell, i) => {
-            if (propostaEvolucio[i] !== undefined) cell.textContent = reduirNumeroSimple(propostaEvolucio[i]);
+            if (propostaEvolucio[i] !== undefined) cell.textContent = (propostaEvolucio[i] === 0) ? '*' : reduirNumeroSimple(propostaEvolucio[i]);
             else cell.textContent = '-';
         });
 
         // Fila 7 (índex 7 de rows): Inconscient
         const inconscientCells = rows[7].querySelectorAll('td:not(:first-child)');
         inconscientCells.forEach((cell, i) => {
-            if (inconscient[i] !== undefined) cell.textContent = reduirNumeroSimple(inconscient[i]);
+            if (inconscient[i] !== undefined) cell.textContent = (inconscient[i] === 0) ? '*' : reduirNumeroSimple(inconscient[i]);
             else cell.textContent = '-';
         });
 
         // Fila 8 (índex 8 de rows): Inducció 1r nivell Inconscient
         const induccioInconscient1Cells = rows[8].querySelectorAll('td:not(:first-child)');
         induccioInconscient1Cells.forEach((cell, i) => {
-            if (induccionsInconscientsCalculades.nivell1[i] !== undefined) cell.textContent = reduirNumeroSimple(induccionsInconscientsCalculades.nivell1[i]);
+            if (induccionsInconscientsCalculades.nivell1[i] !== undefined) cell.textContent = (induccionsInconscientsCalculades.nivell1[i] === 0) ? '*' : reduirNumeroSimple(induccionsInconscientsCalculades.nivell1[i]);
             else cell.textContent = '-';
         });
 
         // Fila 9 (índex 9 de rows): Inducció 2n nivell Inconscient
         const induccioInconscient2Cells = rows[9].querySelectorAll('td:not(:first-child)');
         induccioInconscient2Cells.forEach((cell, i) => {
-            if (induccionsInconscientsCalculades.nivell2[i] !== undefined) cell.textContent = reduirNumeroSimple(induccionsInconscientsCalculades.nivell2[i]);
+            if (induccionsInconscientsCalculades.nivell2[i] !== undefined) cell.textContent = (induccionsInconscientsCalculades.nivell2[i] === 0) ? '*' : reduirNumeroSimple(induccionsInconscientsCalculades.nivell2[i]);
             else cell.textContent = '-';
         });
 
         // Fila 10 (índex 10 de rows): Inducció 3r nivell Inconscient
         const induccioInconscient3Cells = rows[10].querySelectorAll('td:not(:first-child)');
         induccioInconscient3Cells.forEach((cell, i) => {
-            if (induccionsInconscientsCalculades.nivell3[i] !== undefined) cell.textContent = reduirNumeroSimple(induccionsInconscientsCalculades.nivell3[i]);
+            if (induccionsInconscientsCalculades.nivell3[i] !== undefined) cell.textContent = (induccionsInconscientsCalculades.nivell3[i] === 0) ? '*' : reduirNumeroSimple(induccionsInconscientsCalculades.nivell3[i]);
             else cell.textContent = '-';
         });
 

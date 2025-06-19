@@ -243,13 +243,11 @@ export class CalculadoraNumerologia {
 				// o si el valor és undefined (per exemple, si habitants[valorXReduit - 1] no existeix), afegim 0.
 				nivell1.push(habitantDeLaCasaQueIndueix !== undefined ? habitantDeLaCasaQueIndueix : 0);
 				
-				// console.log(`Casa ${i+1}: Habitant=${valorHabitantsDeLaCasaActual}. ValorXReduit=${valorXReduit}. Buscant habitant de Casa ${valorXReduit}. Trobat: ${habitantDeLaCasaQueIndueix}. Nivell 1: ${nivell1[i]}`); // DEBUG
 			} else {
 				// Si l'habitant de la casa actual és 0, la inducció és 0
 				nivell1.push(0);
 			}
 		}
-		// console.log('calcularInduccio: Nivell 1 calculat:', nivell1); // DEBUG
 
 		const nivell2 = [];
 		for (let i = 0; i < 9; i++) {
@@ -264,7 +262,6 @@ export class CalculadoraNumerologia {
 				nivell2.push(0);
 			}
 		}
-		// console.log('calcularInduccio: Nivell 2 calculat:', nivell2); // DEBUG
 
 		const nivell3 = [];
 		for (let i = 0; i < 9; i++) {
@@ -279,7 +276,6 @@ export class CalculadoraNumerologia {
 				nivell3.push(0);
 			}
 		}
-		// console.log('calcularInduccio: Nivell 3 calculat:', nivell3); // DEBUG
 
 		return { nivell1, nivell2, nivell3 };
 	}
