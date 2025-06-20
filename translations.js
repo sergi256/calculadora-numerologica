@@ -21,6 +21,9 @@ export const translations = {
         'mes_naixement_placeholder': 'Mes',
         'any_naixement_placeholder': 'Any',
         'pdfButton_text': 'Descarregar com a PDF',
+        'contacte_titol': 'Contacta amb mi',
+        'contacte_text': 'Si tens qualsevol pregunta o comentari, no dubtis en omplir el següent formulari:',
+        'contacte_button': 'Comentari',
         'footer_line1': '© 2025 Sergi Ximenes Catà de la Torra. Codi disponible sota <a href="LICENSE" target="_blank" rel="noopener noreferrer">GNU AFFERO GENERAL PUBLIC LICENSE Version 3</a>',
         'footer_line2': 'Totes les imatges d\'aquesta pàgina són de domini públic (sense restriccions de copyright).',
 
@@ -90,6 +93,9 @@ export const translations = {
         'mes_naixement_placeholder': 'Mes',
         'any_naixement_placeholder': 'Año',
         'pdfButton_text': 'Descargar como PDF',
+        'contacte_titol': 'Contacta conmigo',
+        'contacte_text': 'Si tienes cualquier pregunta o comentario, no dudes en rellenar el siguiente formulario:',
+        'contacte_button': 'Comentario',
         'footer_line1': '© 2025 Sergi Ximenes Catà de la Torra. Código disponible bajo <a href="LICENSE" target="_blank" rel="noopener noreferrer">GNU AFFERO GENERAL PUBLIC LICENSE Version 3</a>',
         'footer_line2': 'Todas las imágenes de esta página son de dominio público (sin restricciones de copyright).',
 

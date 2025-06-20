@@ -1,5 +1,3 @@
-TODO: continuar la traducció de tots els missatges a translations.js
-
 TODO: investigar mètode contacte per rebre missatges d'usuaris
 
 TODO: afegir un botó per presentar/amagar els números sense reduir entre 12 i 78

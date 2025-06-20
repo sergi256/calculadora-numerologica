@@ -426,3 +426,83 @@ Exemple de font rúnica (requereix que l'usuari la tingui instal·lada o que la 
         font-size: 0.9em;
     }
 }
+
+
+.contacte-section {
+    background-color: rgba(17, 34, 51, 0.4); /* Igual que #taulaDades */
+    border-radius: 10px;
+    box-shadow: 0 2px 12px rgba(106, 27, 154, 0.10);
+    margin: 2rem auto 40px auto;
+    padding: 2rem 1rem;
+    max-width: 900px;
+    width: 100%;
+    text-align: center;
+    color: #f0f8ff; /* Text clar, igual que les taules */
+    font-family: inherit;
+}
+
+.contacte-section h2 {
+    color: #a7d9e4; /* Blau gelós, igual que la capçalera de la taula */
+    margin-bottom: 1.5rem;
+    font-size: 2rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}
+
+.contacte-section iframe {
+    width: 100%;
+    min-height: 600px;
+    border: 1px solid rgba(167, 217, 228, 0.2); /* Igual que les cel·les */
+    border-radius: 8px;
+    background: transparent;
+    margin-top: 1rem;
+    box-shadow: 0 1px 8px rgba(106, 27, 154, 0.07);
+}
+
+
+
+.contacte-section {
+    background-color: rgba(17, 34, 51, 0.45); /* Fons opac i integrat amb la resta de la pàgina */
+    border-radius: 10px;
+    box-shadow: 0 2px 12px rgba(106, 27, 154, 0.10);
+    margin: 2rem auto 40px auto;
+    padding: 2rem 1rem;
+    max-width: 900px;
+    width: 100%;
+    text-align: center;
+    color: #f0f8ff;
+    font-family: inherit;
+}
+
+.contacte-section h2 {
+    color: #a7d9e4;
+    color: rgba(167, 217, 228, 0.7); /* Blau gelós amb transparència */
+    margin-bottom: 1.5rem;
+    font-size: 2rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}
+
+.contacte-section iframe {
+    width: 100%;
+    min-height: 600px;
+    border: 1px solid rgba(167, 217, 228, 0.2);
+    border-radius: 8px;
+    background: transparent;
+    margin-top: 1rem;
+    box-shadow: 0 1px 8px rgba(106, 27, 154, 0.07);
+}
+
+/* Responsivitat per mòbils */
+@media (max-width: 900px) {
+    .contacte-section {
+        max-width: 98vw;
+        padding: 1rem 0.2rem;
+    }
+    .contacte-section h2 {
+        font-size: 1.3rem;
+    }
+    .contacte-section iframe {
+        min-height: 400px;
+    }
+}
