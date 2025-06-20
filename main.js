@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	
     // Lògica per mostrar/amagar el disclaimer (si vols que es gestioni aquí)
     const nouDisclaimerBanner = document.getElementById('nou-disclaimer-proves');
-    const MOSTRAR_NOU_DISCLAIMER_PROVES = true; // Defineix si vols mostrar-lo o no
+    const MOSTRAR_NOU_DISCLAIMER_PROVES = false; // Defineix si vols mostrar-lo o no
     if (nouDisclaimerBanner) {
         if (MOSTRAR_NOU_DISCLAIMER_PROVES) {
             nouDisclaimerBanner.classList.remove('is-hidden');

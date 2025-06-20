@@ -81,7 +81,7 @@ h1 {
 
 /* --- Disclaimer (adaptat al nou estil) --- */
 .disclaimer-banner {
-    background-color: rgba(17, 34, 51, 0.3); /* Blau fosc semitransparent */
+    background-color: rgba(17, 34, 51, 0.6); /* Blau fosc semitransparent */
     color: #c9e0e8; /* Text clar */
     padding: 15px 20px;
     border-radius: 8px;
