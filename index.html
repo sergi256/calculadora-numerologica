@@ -25,16 +25,16 @@
 		
         <div class="input-group">
             <div class="input-field-wrapper">
-                <label for="nomComplet">El teu Nom i els teus quatre Cognoms:</label>
-                <input type="text" id="nomInput" placeholder="Introdueix el teu nom complet">
+                <label for="nomComplet" data-i18n="title_camp_text">El teu Nom i els teus quatre Cognoms:</label>
+                <input type="text" id="nomInput" placeholder="Introdueix el teu nom complet" data-i18n-placeholder="nomInput_placeholder">
             </div>
 
             <div class="input-field-wrapper">
-                <label for="diaNaixement">Data de Naixement:</label>
+                <label for="diaNaixement" data-i18n="data_naixement_label">Data de Naixement:</label>
                 <div class="date-inputs-group">
-                    <input type="number" id="dia" placeholder="Dia" min="1" max="31">
-                    <input type="number" id="mes" placeholder="Mes" min="1" max="12">
-                    <input type="number" id="any" placeholder="Any" min="1900" max="2100">
+                    <input type="number" id="dia" placeholder="dia" min="1" max="31" data-i18n-placeholder="dia_naixement_placeholder">
+                    <input type="number" id="mes" placeholder="mes" min="1" max="12" data-i18n-placeholder="mes_naixement_placeholder">
+                    <input type="number" id="any" placeholder="any" min="1900" max="2100" data-i18n-placeholder="any_naixement_placeholder">
                 </div>
             </div>
         </div>
@@ -150,7 +150,7 @@
             </tr>
         </table>
 
-        <button id="pdfButton">Descarregar com a PDF</button>
+        <button id="pdfButton" data-i18n="pdfButton_text">Descarregar com a PDF</button>
         <div id="errorPDF" style="display: none;"></div>
     </div>
 

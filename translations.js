@@ -15,6 +15,14 @@ export const translations = {
         'meta_description': 'Calculadora numerològica per descobrir els teus números personals.',
         'disclaimer-banner_text': 'Aquesta pàgina automatitza el càlcul de les <b>Àrees Clau</b> i de la <b>Inclusió</b> tal com explica <b>Martine Coquatrix</b> en el seu llibre <a href="https://libreriaepsilon.com/catalogo/la-numerologia-a-la-luz-del-arbol-de-la-vida-y-las-letras-hebraicas" target="_blank" rel="noopener noreferrer">La numerología a la luz del árbol de vida y las letras hebraicas</a>. El propòsit és facilitar aquests càlculs a les persones que vulguin endinsar-se en aquest llibre tan interessant.',
         'title_camp_text': 'El teu Nom i els teus quatre Cognoms:',
+        'nomInput_placeholder': 'Introdueix el teu nom complet',
+        'data_naixement_label': 'Data de Naixement:', // Etiqueta per al camp de data de naixement
+        'dia_naixement_placeholder': 'Dia',
+        'mes_naixement_placeholder': 'Mes',
+        'any_naixement_placeholder': 'Any',
+        'pdfButton_text': 'Descarregar com a PDF',
+        'footer_line1': '© 2025 Sergi Ximenes Catà de la Torra. Codi disponible sota <a href="LICENSE" target="_blank" rel="noopener noreferrer">GNU AFFERO GENERAL PUBLIC LICENSE Version 3</a>',
+        'footer_line2': 'Totes les imatges d\'aquesta pàgina són de domini públic (sense restriccions de copyright).',
 
         // Textos del PDF - Secció "Informe Numerològic"
         'informe_titol': 'Informe Numerològic',
@@ -48,15 +56,15 @@ export const translations = {
         // Aquests són els 'th' o 'td' de la primera columna de taulaDades
         'taulaDades_cases': 'Cases', // Si la primera fila té una capçalera
         'taulaDades_habitants': 'Habitants',
-        'taulaDades_induccio1': 'Inducció 1r nivell',
-        'taulaDades_induccio2': 'Inducció 2n nivell',
-        'taulaDades_induccio3': 'Inducció 3r nivell',
+        'taulaDades_induccio1': 'Inducció 1.r nivell',
+        'taulaDades_induccio2': 'Inducció 2.n nivell',
+        'taulaDades_induccio3': 'Inducció 3.r nivell',
         'taulaDades_ponts': 'Ponts',
         'taulaDades_propostaEvolucio': 'Proposta Evolució',
         'taulaDades_inconscient': 'Inconscient',
-        'taulaDades_induccioInconscient1': 'Inducció 1r nivell (Inc.)',
-        'taulaDades_induccioInconscient2': 'Inducció 2n nivell (Inc.)',
-        'taulaDades_induccioInconscient3': 'Inducció 3r nivell (Inc.)',
+        'taulaDades_induccioInconscient1': 'Inducció 1.r nivell (Inc.)',
+        'taulaDades_induccioInconscient2': 'Inducció 2.n nivell (Inc.)',
+        'taulaDades_induccioInconscient3': 'Inducció 3.r nivell (Inc.)',
         // Si tens les altres 4 files al PDF
         // 'taulaDades_relacioAnimaInconscient': 'Relació Ànima-Inconscient',
         // 'taulaDades_relacioInconscientExpressio': 'Relació Inconscient-Expressió',
@@ -75,7 +83,17 @@ export const translations = {
         'title_main': 'Calculadora Numerológica', // S'usa per al <title> i per a <h1>
         'meta_description': 'Calculadora numerológica para descubrir tus números personales.',        
         'disclaimer-banner_text': 'Esta página automatiza el cálculo de las <b>Áreas Clave</b> y de la <b>Inclusión</b> tal como explica <b>Martine Coquatrix</b> en su libro <a href="https://libreriaepsilon.com/catalogo/la-numerologia-a-la-luz-del-arbol-de-la-vida-y-las-letras-hebraicas" target="_blank" rel="noopener noreferrer">La Numerología a la luz del Árbol de Vida y las Letras Hebraicas</a>. El propósito es facilitar estos cálculos a las personas que quieran adentrarse en este libro tan interesante.',
-        'title_camp_text': 'El teu Nom i els teus quatre Cognoms:',
+        'title_camp_text': 'Tu Nombre y tus cuatro Apellidos:',
+        'nomInput_placeholder': 'Introduce tu nombre completo',
+        'data_naixement_label': 'Fecha de Nacimiento:', // Etiqueta para el campo de fecha de nacimiento
+        'dia_naixement_placeholder': 'Día',
+        'mes_naixement_placeholder': 'Mes',
+        'any_naixement_placeholder': 'Año',
+        'pdfButton_text': 'Descargar como PDF',
+        'footer_line1': '© 2025 Sergi Ximenes Catà de la Torra. Código disponible bajo <a href="LICENSE" target="_blank" rel="noopener noreferrer">GNU AFFERO GENERAL PUBLIC LICENSE Version 3</a>',
+        'footer_line2': 'Todas las imágenes de esta página son de dominio público (sin restricciones de copyright).',
+
+
 
         // Textos del PDF - Sección "Informe Numerológico"
         'informe_titol': 'Informe Numerológico',
@@ -107,15 +125,15 @@ export const translations = {
         // Textos de la segunda tabla (taulaDades) del PDF
         'taulaDades_cases': 'Casas',
         'taulaDades_habitants': 'Habitantes',
-        'taulaDades_induccio1': 'Inducción 1er nivel',
-        'taulaDades_induccio2': 'Inducción 2º nivel',
-        'taulaDades_induccio3': 'Inducción 3er nivel',
+        'taulaDades_induccio1': 'Inducción 1.º nivel',
+        'taulaDades_induccio2': 'Inducción 2.º nivel',
+        'taulaDades_induccio3': 'Inducción 3.º nivel',
         'taulaDades_ponts': 'Puentes',
         'taulaDades_propostaEvolucio': 'Propuesta Evolución',
         'taulaDades_inconscient': 'Inconsciente',
-        'taulaDades_induccioInconscient1': 'Inducción 1er nivel (Inc.)',
-        'taulaDades_induccioInconscient2': 'Inducción 2º nivel (Inc.)',
-        'taulaDades_induccioInconscient3': 'Inducción 3er nivel (Inc.)',
+        'taulaDades_induccioInconscient1': 'Inducción 1.º nivel (Inc.)',
+        'taulaDades_induccioInconscient2': 'Inducción 2.º nivel (Inc.)',
+        'taulaDades_induccioInconscient3': 'Inducción 3.º nivel (Inc.)',
         // Si tienes las otras 4 filas en el PDF
         // 'taulaDades_relacioAnimaInconscient': 'Relación Alma-Inconsciente',
         // 'taulaDades_relacioInconscientExpressio': 'Relación Inconsciente-Expresión',

@@ -48,13 +48,22 @@ export class LocalizationManager {
             console.error('[LocalizationManager] No hi ha textos de traducció carregats.');
             return;
         }
-
+        
+        // Traducció d'elements amb data-i18n (textos)
         document.querySelectorAll('[data-i18n]').forEach(element => {
             const key = element.getAttribute('data-i18n');
             if (this.texts[key]) {
                 element.innerHTML = this.texts[key];
             } else {
                 console.warn(`[LocalizationManager] Clau de traducció no trobada per a l'element '${key}' en l'idioma '${this.currentLang}'.`);
+            }
+        });
+
+        // Traducció de placeholders
+        document.querySelectorAll('[data-i18n-placeholder]').forEach(element => {
+            const key = element.getAttribute('data-i18n-placeholder');
+            if (this.texts[key]) {
+                element.setAttribute('placeholder', this.texts[key]);
             }
         });
         
