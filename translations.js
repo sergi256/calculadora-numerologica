@@ -30,6 +30,8 @@ export const translations = {
         // Textos del PDF - Secció "Informe Numerològic"
         'informe_titol': 'Informe Numerològic',
         'informe_subtitol_anonim': 'Anònim',
+        'taula_titol_areesClau': 'Àrees Clau',
+        'taula_titol_inclusio': 'Inclusió',
         'taula_capcalera_tipus': 'Tipus',
         'taula_capcalera_valor': 'Valor',
         'taula_capcalera_significat': 'Significat',
@@ -104,6 +106,8 @@ export const translations = {
         // Textos del PDF - Sección "Informe Numerológico"
         'informe_titol': 'Informe Numerológico',
         'informe_subtitol_anonim': 'Anónimo',
+        'taula_titol_areesClau': 'Áreas Clave',
+        'taula_titol_inclusio': 'Inclusión',
         'taula_capcalera_tipus': 'Tipo',
         'taula_capcalera_valor': 'Valor',
         'taula_capcalera_significat': 'Significado',
