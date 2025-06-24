@@ -281,6 +281,12 @@ button:hover {
     color: #a7d9e4; /* Color gelós */
 }
 
+/* Canvia la transparència de les 9 cel·les de la fila "Cases" (excloent la primera cel·la d'etiqueta) */
+#taulaDades tr:nth-child(2) td:not(:first-child) {
+    background-color: rgba(17, 34, 51, 0.7); /* Ajusta l'últim valor per la transparència */
+    color: #f0f8ff; /* Opcional: canvia el color del text si vols més contrast */
+}
+
 #taulaDades tr:nth-child(even) { /* Files parells amb un fons lleugerament diferent */
     background-color: rgba(17, 34, 51, 0.3);
 }
