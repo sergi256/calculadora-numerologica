@@ -264,7 +264,7 @@ export class CalculadoraNumerologia {
 		}
 
 		const nivell3 = [];
-		for (let i = 0; i < 9; i++) {
+		for (let i = 0; i < 10; i++) {
 			const valorNivell2Actual = nivell2[i];
 
 			if (valorNivell2Actual > 0) {
