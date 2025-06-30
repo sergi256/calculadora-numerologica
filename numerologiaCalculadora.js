@@ -193,6 +193,7 @@ export class CalculadoraNumerologia {
 		return sumaTotal > 78 ? String(reduit) : `${sumaTotal}/${reduit}`;
 	}
 
+	
 	/* Funcions que calculen les files de la TaulaDades */
 	
 	// Calcula els Habitants (quantes lletres hi ha de cada valor 1-9)
@@ -264,7 +265,7 @@ export class CalculadoraNumerologia {
 		}
 
 		const nivell3 = [];
-		for (let i = 0; i < 10; i++) {
+		for (let i = 0; i < 9; i++) {
 			const valorNivell2Actual = nivell2[i];
 
 			if (valorNivell2Actual > 0) {
