@@ -1,3 +1,8 @@
+TODO: meditar com recollir tota la informació introduida i tots els resultats d'una sola instància per ser enmagatzemats en un fitxer json del qual poder generar l'informe de forma automàtica.
+
+TODO: meditar si val la pena donar l'opció de descarregar l'informe en PDF
+
+
 TODO: investigar google search console i si val la pena afegir els 3 mètodes de verificació que em falten, a: https://search.google.com/search-console/ownership?resource_id=https%3A%2F%2Fsergi256.github.io%2Fcalculadora-numerologica%2F
 
 TODO: afegir un botó per presentar/amagar els números sense reduir entre 12 i 78
@@ -9,6 +14,6 @@ TODO: Validació d'entrada: Ja tens algunes validacions bàsiques a la Calculado
 
 isabel fernández huertas pujol garcía 
 11-05-1968
-Exemple que s'usa durant tot el llibre
+Exemple que s'usa durant tot el llibre.
 Molt útil per testejar els resultats de la pàgina web.
-taula a la pàgina 249 per comparar resultats
+Taula a la pàgina 249 per comparar resultats.
